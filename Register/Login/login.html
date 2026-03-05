@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrimeCuts | Login</title>
+    <link rel="stylesheet" href="/Register/Login/login.css"/>
+    <script src="/Register/Login/login.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">PrimeCuts</div>
+
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Transparency</a></li>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+
+        <a class="cta-btn" href="../register.html">Register</a>
+      </nav>
+    </header>
+
+    <main class="login-container">
+      <div class="login-header">
+        <h1>PrimeCuts Login</h1>
+        <p>
+          Access your account to order fresh farm meat, track deliveries, and
+          manage your orders.
+        </p>
+      </div>
+
+      <form action="/submit_login" method="POST" id="loginForm">
+        <fieldset>
+          <legend>Account Login</legend>
+
+          <label for="username">Username or Email</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter username or email"
+            required
+          />
+
+          <label for="password">Password</label>
+
+          <div class="password-box">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter password"
+              required
+            />
+            <span onclick="togglePassword()">👁</span>
+          </div>
+
+          <div class="remember">
+            <input type="checkbox" id="remember" />
+            <label for="remember">Remember Me</label>
+          </div>
+        </fieldset>
+
+        <div class="btn-group">
+          <button type="submit">Login</button>
+          <button type="reset">Clear</button>
+        </div>
+      </form>
+
+      <div class="login-links">
+        <p>
+          Don't have an account? <a href="../register.html">Register here</a>
+        </p>
+        <a href="#">Forgot Password?</a>
+      </div>
+    </main>
+    <footer>
+      <p>© 2026 PrimeCuts Kenya. Fresh Farm Meat Delivered.</p>
+    </footer>
+  </body>
+</html>

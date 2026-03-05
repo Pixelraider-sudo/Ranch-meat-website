@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Register/register.css" />
+    <title>PrimeCuts | Register</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">PrimeCuts</div>
+
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#transparency">Transparency</a></li>
+          <li><a href="#jobs">Jobs</a></li>
+          <li><a href="/Register/Login/login.html">Login</a></li>
+        </ul>
+
+        <a class="cta-btn" href="/Register/register.html">Register</a>
+      </nav>
+    </header>
+    <h1>PrimeCuts Registration</h1>
+
+    <p>
+      Create an account to order fresh farm meat, track deliveries, and manage
+      your orders.
+    </p>
+
+    <form action="/submit_registration" method="POST">
+      <!-- PERSONAL INFORMATION -->
+      <fieldset>
+        <legend>Personal Information</legend>
+
+        <label for="fname">First Name:</label>
+        <input
+          type="text"
+          id="fname"
+          name="fname"
+          placeholder="Enter first name"
+          required
+        />
+        <br /><br />
+
+        <label for="lname">Last Name:</label>
+        <input
+          type="text"
+          id="lname"
+          name="lname"
+          placeholder="Enter last name"
+          required
+        />
+        <br /><br />
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" />
+        <br /><br />
+
+        <label>Gender:</label>
+
+        <input type="radio" id="male" name="gender" value="male" />
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">Female</label>
+
+        <input type="radio" id="other" name="gender" value="other" />
+        <label for="other">Other</label>
+      </fieldset>
+
+      <br />
+
+      <!-- ACCOUNT INFORMATION -->
+      <fieldset>
+        <legend>Account Details</legend>
+
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Choose a username"
+          required
+        />
+        <br /><br />
+
+        <label for="email">Email Address:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="example@email.com"
+          required
+        />
+        <br /><br />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Create password"
+          required
+        />
+        <br /><br />
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm_password"
+          name="confirm_password"
+          required
+        />
+      </fieldset>
+
+      <br />
+
+      <!-- CONTACT INFORMATION -->
+      <fieldset>
+        <legend>Contact Information</legend>
+
+        <label for="phone">Phone Number:</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="+254..."
+          required
+        />
+        <br /><br />
+
+        <label for="altphone">Alternative Phone:</label>
+        <input type="tel" id="altphone" name="altphone" />
+      </fieldset>
+
+      <br />
+
+      <!-- DELIVERY ADDRESS -->
+      <fieldset>
+        <legend>Delivery Address</legend>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" value="Kenya" />
+        <br /><br />
+
+        <label for="city">City / Town:</label>
+        <input type="text" id="city" name="city" placeholder="e.g Nairobi" />
+        <br /><br />
+
+        <label for="location">Delivery Location:</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Estate / Area"
+        />
+        <br /><br />
+
+        <label for="address">Full Address:</label>
+        <textarea id="address" name="address" rows="3" cols="30"></textarea>
+      </fieldset>
+
+      <br />
+
+      <!-- ACCOUNT TYPE -->
+      <fieldset>
+        <legend>Account Type</legend>
+
+        <label for="role">Select your role:</label>
+
+        <select id="role" name="role">
+          <option value="customer">Customer</option>
+          <option value="farmer">Farmer / Supplier</option>
+          <option value="delivery">Delivery Personnel</option>
+        </select>
+      </fieldset>
+
+      <br />
+
+      <!-- PREFERENCES -->
+      <fieldset>
+        <legend>Meat Preferences</legend>
+
+        <label>Select meats you are interested in:</label>
+        <br />
+
+        <input type="checkbox" id="beef" name="meat" value="beef" />
+        <label for="beef">Beef</label>
+
+        <input type="checkbox" id="goat" name="meat" value="goat" />
+        <label for="goat">Goat</label>
+
+        <input type="checkbox" id="mutton" name="meat" value="mutton" />
+        <label for="mutton">Mutton</label>
+
+        <input type="checkbox" id="pork" name="meat" value="pork" />
+        <label for="pork">Pork</label>
+      </fieldset>
+
+      <br />
+
+      <!-- TERMS -->
+      <fieldset>
+        <legend>Terms and Conditions</legend>
+
+        <input type="checkbox" id="terms" name="terms" required />
+
+        <label for="terms">
+          I agree to the PrimeCuts terms and conditions and privacy policy.
+        </label>
+      </fieldset>
+
+      <br /><br />
+
+      <!-- SUBMIT -->
+
+      <button type="submit">Create Account</button>
+
+      <button type="reset">Clear Form</button>
+    </form>
+
+    <br />
+
+    <p>
+      Already have an account?
+      <a href="/Register/Login/login.html">Login here</a>
+    </p>
+    <footer>
+      <p>© 2026 PrimeCuts Kenya. Fresh Farm Meat Delivered.</p>
+    </footer>
+  </body>
+</html>
