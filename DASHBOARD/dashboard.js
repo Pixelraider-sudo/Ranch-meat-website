@@ -100,3 +100,41 @@ if (sendBtn) {
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendBtn.click();
 });
+
+// Initialize data from storage or empty arrays
+let cart = JSON.parse(localStorage.getItem("primeCutsCart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("primeCutsWishlist")) || [];
+
+// Function to update the navbar count
+const updateNav = () => {
+  document.getElementById("cart-count").innerText = cart.length;
+};
+updateNav();
+
+// Listen for clicks on ALL product buttons
+document.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("add-to-cart") ||
+    e.target.classList.contains("add-to-wishlist")
+  ) {
+    const productDiv = e.target.closest(".product");
+    const item = {
+      name: productDiv.querySelector("h3").innerText,
+      price: productDiv.querySelector("p").innerText,
+      img: productDiv.querySelector("img").src,
+      id: Date.now(), // Unique ID for deleting later
+    };
+
+    if (e.target.classList.contains("add-to-cart")) {
+      cart.push(item);
+      localStorage.setItem("primeCutsCart", JSON.stringify(cart));
+      alert(`${item.name} added to cart!`);
+    } else {
+      wishlist.push(item);
+      localStorage.setItem("primeCutsWishlist", JSON.stringify(wishlist));
+      alert(`${item.name} added to wishlist!`);
+    }
+    updateNav();
+  }
+});
+

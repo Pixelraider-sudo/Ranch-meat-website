@@ -248,8 +248,12 @@ body {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
 }
-
+a {
+  text-decoration: none;
+  color: white;
+}
 .product-card:hover {
   transform: scale(1.05);
 }
@@ -295,9 +299,26 @@ body {
 .video-card p {
   margin-top: 15px;
   font-weight: 600;
-  color: #444;
+  color: #d32f2f; /* Brand Red */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
+/* Adds a small 'verified' dot before the text */
+.video-card p::before {
+  content: "●";
+  font-size: 10px;
+  color: #27ae60; /* Green for "Verified/Live" status */
+}
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Automatically calculates height based on width */
+  height: auto; /* Overrides the fixed 250px for better scaling */
+  border: none;
+  border-radius: 10px;
+}
 /* WEATHER */
 
 .weather {
