@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PrimeCuts | Fresh Farm Meat</title>
     <link rel="stylesheet" href="/DASHBOARD/dashboard.css" />
+    <script type="module" src="dashboard.js" defer></script>
   </head>
 
   <body>
@@ -14,11 +15,11 @@
         <div class="logo">PrimeCuts</div>
 
         <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">Farmers</a></li>
-          <li><a href="#">Transparency</a></li>
-          <li><a href="#">Jobs</a></li>
+          <li><a href="/LANDING PAGE/index.html">Home</a></li>
+          <li><a href="/DASHBOARD/dashboard.html">Shop</a></li>
+          <li><a href="/FARMER PAGE/index.html">Farmers</a></li>
+          <li><a href="/TRANSPARENCY/index.html">Transparency</a></li>
+          <li><a href="/JOBS PAGE/index.html">Jobs</a></li>
           <li><a href="/Register/Login/login.html">Login</a></li>
         </ul>
 
@@ -36,7 +37,7 @@
           Quality cuts delivered to your doorstep.
         </p>
 
-        <a class="hero-btn" href="#">Shop Now</a>
+        <a class="hero-btn" href="/DASHBOARD/dashboard.html">Shop Now</a>
       </div>
     </section>
 
@@ -45,46 +46,13 @@
       <h2>Find Your Favorite Meat</h2>
 
       <input type="text" placeholder="Search beef, goat, mutton..." />
+      <div
+        id="no-results"
+        style="display: none; text-align: center; padding: 20px; color: red"
+      >
+        No products found. Try searching for Beef, Goat, or Camel.
+      </div>
     </section>
-
-    <!-- FEATURED PRODUCTS -->
-    <!-- <section class="products">
-
-<h2>Featured Cuts</h2>
-
-<div class="product-grid">
-
-<div class="product">
-<img src="">
-<h3>Premium Beef</h3>
-<p>KSh 750 / kg</p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1603366615917-1fa6dad5c4fa">
-<h3>Fresh Goat Meat</h3>
-<p>KSh 820 / kg</p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1558030006-450675393462">
-<h3>Mutton</h3>
-<p>KSh 880 / kg</p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1558030131-8ef8d6c2b5d0">
-<h3>Pork</h3>
-<p>KSh 700 / kg</p>
-<button>Add to Cart</button>
-</div>
-
-</div>
-
-</section> -->
     <section class="products" id="pork-cuts">
       <h2>Premium Pork Cuts</h2>
       <div class="product-grid">
@@ -273,6 +241,27 @@
         </div>
       </div>
     </section>
+    <!-- AI  chatbot integration code would go here, allowing customers to ask questions about products, get cooking tips, or receive personalized recommendations based on their preferences and order history. -->
+    <button id="chatbot-launcher" class="chatbot-btn">
+      🥩 Ask the Butcher
+    </button>
+
+    <div id="chat-window" class="chat-container">
+      <div class="chat-header">
+        <h3>PrimeCuts AI Butcher</h3>
+        <button id="close-chat">&times;</button>
+      </div>
+      <div class="chat-body" id="chat-content">
+        <p>
+          Hello! I'm your AI Butcher. Looking for the best cut for a stew or
+          BBQ?
+        </p>
+      </div>
+      <div class="chat-footer">
+        <input type="text" id="user-msg" placeholder="Type a message..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
     <!-- CALL TO ACTION -->
     <section class="cta">
       <h2>Join PrimeCuts Today</h2>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PrimeCuts | Careers</title>
+    <link rel="stylesheet" href="/JOBS PAGE/style.css" />
+    <script src="/JOBS PAGE/INDEX.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">PrimeCuts</div>
+
+        <ul class="nav-links">
+          <li><a href="/LANDING PAGE/index.html">Home</a></li>
+          <li><a href="/DASHBOARD/dashboard.html">Shop</a></li>
+          <li><a href="/FARMER PAGE/index.html">Farmers</a></li>
+          <li><a href="/TRANSPARENCY/index.html">Transparency</a></li>
+          <li><a href="/JOBS PAGE/index.html">Jobs</a></li>
+          <li><a href="/Register/Login/login.html">Login</a></li>
+        </ul>
+
+        <a class="cta-btn" href="/Register/register.html">Register</a>
+      </nav>
+    </header>
+    <header>
+      <h1>Careers at PrimeCuts</h1>
+      <p>Help us transform the meat marketplace in Kenya.</p>
+    </header>
+
+    <section>
+      <h2>Open Positions</h2>
+
+      <div class="job-grid">
+        <div class="job-card">
+          <h3>Delivery Rider</h3>
+          <p>📍 Location: Nairobi</p>
+          <p>Deliver PrimeCuts orders safely to customers.</p>
+        </div>
+
+        <div class="job-card">
+          <h3>Veterinary Inspector</h3>
+          <p>📍 Location: Nakuru</p>
+          <p>Inspect livestock health and safety.</p>
+        </div>
+
+        <div class="job-card">
+          <h3>Marketplace Manager</h3>
+          <p>📍 Location: Nairobi</p>
+          <p>Manage farmer partnerships and marketplace operations.</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Apply for a Job</h2>
+
+      <form id="jobForm">
+        <label>Full Name</label>
+        <input type="text" required />
+
+        <label>Email</label>
+        <input type="email" required />
+
+        <label>Phone Number</label>
+        <input id="phone" type="tel" placeholder="+254712345678" required />
+        <div id="phone-error" class="error"></div>
+
+        <label>Position Applying For</label>
+        <select required>
+          <option>Delivery Rider</option>
+          <option>Veterinary Inspector</option>
+          <option>Marketplace Manager</option>
+        </select>
+
+        <label>Upload CV</label>
+        <input id="cvUpload" type="file" required />
+        <div id="fileName" class="file-name"></div>
+
+        <label>Why should we hire you?</label>
+        <textarea rows="5" required></textarea>
+
+        <button type="submit">Submit Application</button>
+
+        <div id="successMsg"></div>
+      </form>
+    </section>
+  </body>
+</html>

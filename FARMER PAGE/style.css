@@ -1,0 +1,286 @@
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    Segoe UI,
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+}
+
+/* BODY */
+
+body {
+  background: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+  padding-bottom: 40px;
+}
+
+/* HEADER */
+
+header {
+  background: #1e3a2f;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+header p {
+  opacity: 0.9;
+}
+/* NAVBAR */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+  background: #1e3a2f;
+  color: white;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #9ae6b4;
+}
+
+.cta-btn {
+  background: #2f855a;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+}
+
+.cta-btn:hover {
+  background: #276749;
+}
+
+/* FARMER PROFILE */
+
+.farmer-profile {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: auto;
+}
+
+.farmer-photo {
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.review {
+  background: #f4f6f8;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* PAGE HEADER */
+
+.page-header {
+  text-align: center;
+  padding: 40px;
+  background: #2f855a;
+  color: white;
+}
+
+/* SECTIONS */
+
+section {
+  padding: 40px 10%;
+}
+
+/* TITLES */
+
+h2 {
+  margin-bottom: 20px;
+  color: #1e3a2f;
+}
+
+/* FARMER GRID */
+
+.farmer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* FARMER CARD */
+
+.farmer-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.farmer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.farmer-card h3 {
+  color: #1e3a2f;
+  margin-bottom: 8px;
+}
+
+.farmer-card p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.farmer-card button {
+  margin-top: 10px;
+  background: #2f855a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.farmer-card button:hover {
+  background: #276749;
+}
+
+/* FORM STYLING */
+
+form {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2f855a;
+}
+
+/* BUTTON */
+
+button {
+  margin-top: 15px;
+  background: #2f855a;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #276749;
+}
+
+/* ERROR MESSAGE */
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+/* SUCCESS */
+
+.success {
+  color: green;
+  font-size: 13px;
+}
+
+/* PASSWORD STRENGTH */
+
+.password-strength {
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+/* JOB CARDS */
+
+.job-card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.job-card h3 {
+  color: #1e3a2f;
+  margin-bottom: 6px;
+}
+
+/* SUPPLY CHAIN LIST */
+
+ol li {
+  margin-bottom: 8px;
+}
+
+ul li {
+  margin-bottom: 6px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  section {
+    padding: 30px 5%;
+  }
+
+  header h1 {
+    font-size: 26px;
+  }
+}

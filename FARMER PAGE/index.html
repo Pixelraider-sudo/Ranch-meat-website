@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>PrimeCuts | Our Farmers</title>
+
+    <link rel="stylesheet" href="/FARMER PAGE/style.css" />
+
+    <script defer src="/FARMER PAGE/INDEX.js"></script>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+      <div class="logo">PrimeCuts</div>
+
+      <ul class="nav-links">
+        <li><a href="/LANDING PAGE/index.html">Home</a></li>
+        <li><a href="/DASHBOARD/dashboard.html">Shop</a></li>
+        <li><a href="/FARMER PAGE/index.html">Farmers</a></li>
+        <li><a href="/TRANSPARENCY/index.html">Transparency</a></li>
+        <li><a href="/JOBS PAGE/index.html">Jobs</a></li>
+        <li><a href="/Register/Login/login.html">Login</a></li>
+      </ul>
+
+      <a class="cta-btn" href="/Register/register.html">Register</a>
+    </nav>
+
+    <!-- PAGE HEADER -->
+
+    <header class="page-header">
+      <h1>Our Farmers</h1>
+      <p>Meet the trusted farmers supplying fresh meat to PrimeCuts.</p>
+    </header>
+
+    <!-- FARMERS GRID -->
+
+    <section>
+      <h2>Featured Farmers</h2>
+
+      <div class="farmer-grid">
+        <div class="farmer-card">
+          <h3>John Kamau</h3>
+          <p>Location: Nyeri</p>
+          <p>Specialty: Grass-fed beef cattle</p>
+          <button>View Profile</button>
+        </div>
+
+        <div class="farmer-card">
+          <h3>Mary Wanjiku</h3>
+          <p>Location: Nakuru</p>
+          <p>Specialty: Free range chicken</p>
+          <button>View Profile</button>
+        </div>
+
+        <div class="farmer-card">
+          <h3>Peter Kiptoo</h3>
+          <p>Location: Eldoret</p>
+          <p>Specialty: Goat farming</p>
+          <button>View Profile</button>
+        </div>
+
+        <div class="farmer-card">
+          <h3>Amina Hassan</h3>
+          <p>Location: Garissa</p>
+          <p>Specialty: Camel meat</p>
+          <button>View Profile</button>
+        </div>
+      </div>
+    </section>
+    <!--farmer reviews-->
+    <section>
+      <h2>Leave a Review</h2>
+
+      <form>
+        <label>Your Name</label>
+        <input type="text" required />
+
+        <label>Rating</label>
+
+        <select>
+          <option>⭐⭐⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐</option>
+          <option>⭐⭐⭐</option>
+          <option>⭐⭐</option>
+          <option>⭐</option>
+        </select>
+
+        <label>Comment</label>
+
+        <textarea rows="4"></textarea>
+
+        <button type="submit">Submit Review</button>
+      </form>
+    </section>
+
+    <!-- farmer location-->
+    <section>
+      <h2>Farm Location</h2>
+
+      <iframe
+        width="100%"
+        height="350"
+        style="border: 0"
+        loading="lazy"
+        allowfullscreen
+        src="https://maps.google.com/maps?q=nyeri%20kenya&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      >
+      </iframe>
+    </section>
+
+    <!-- FARMER REGISTRATION -->
+
+    <section>
+      <h2>Become a PrimeCuts Farmer</h2>
+
+      <p>
+        Join our platform and sell your livestock products directly to
+        customers.
+      </p>
+
+      <form onsubmit="validateForm(event)">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your name" required />
+
+        <label>Farm Name</label>
+        <input type="text" placeholder="Farm name" />
+
+        <label>County</label>
+        <select>
+          <option>Nairobi</option>
+          <option>Nakuru</option>
+          <option>Nyeri</option>
+          <option>Eldoret</option>
+          <option>Kiambu</option>
+          <option>Kajiado</option>
+        </select>
+
+        <label>Type of Livestock</label>
+        <select>
+          <option>Beef Cattle</option>
+          <option>Goats</option>
+          <option>Sheep</option>
+          <option>Chicken</option>
+          <option>Camel</option>
+        </select>
+
+        <label>Phone Number</label>
+        <input id="phone" type="tel" placeholder="+254712345678" />
+
+        <div id="phone-error" class="error"></div>
+
+        <label>Email</label>
+        <input type="email" placeholder="example@email.com" />
+
+        <label>Password</label>
+        <input type="password" onkeyup="checkPasswordStrength(this.value)" />
+
+        <div id="password-strength" class="password-strength"></div>
+
+        <label>Years of Farming Experience</label>
+        <input type="number" />
+
+        <button type="submit">Register as Farmer</button>
+      </form>
+    </section>
+  </body>
+</html>
