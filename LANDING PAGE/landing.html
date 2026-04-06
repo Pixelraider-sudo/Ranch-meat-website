@@ -3,72 +3,671 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PrimeCuts | Fresh Farm Meat</title>
-    <link rel="stylesheet" href="/LANDING PAGE/style.css" />
-    <script src="/LANDING PAGE/INDEX.js" defer></script>
+    <title>PrimeCuts | Fresh Farm Meat - Live Transparency</title>
+    <link rel="stylesheet" href="/LANDING PAGE/landing.css" />
+    <script src="/LANDING PAGE/landing.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@400;600;700&family=Righteous&display=swap" rel="stylesheet">
   </head>
-
   <body>
     <!-- NAVBAR -->
-
     <header>
       <nav class="navbar">
-        <div class="logo">PrimeCuts</div>
-
+        <div class="logo">
+          <span class="logo-icon">🥩</span>
+          <span class="logo-text">PrimeCuts</span>
+        </div>
         <ul class="nav-links">
-          <li><a href="/LANDING PAGE/index.html">Home</a></li>
-          <li><a href="/DASHBOARD/dashboard.html">Shop</a></li>
-          <li><a href="/FARMER PAGE/index.html">Farmers</a></li>
-          <li><a href="/TRANSPARENCY/index.html">Transparency</a></li>
-          <li><a href="/JOBS PAGE/index.html">Jobs</a></li>
-          <li><a href="/Register/Login/login.html">Login</a></li>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#farmers">Farmers</a></li>
+          <li><a href="#transparency">Transparency</a></li>
+          <li><a href="#jobs">Jobs</a></li>
         </ul>
-
-        <a class="cta-btn" href="/Register/register.html">Register</a>
+        <div class="nav-actions">
+          <button class="halal-toggle" id="halalToggle">
+            <span>☪️ Halal Only</span>
+          </button>
+          <a class="cta-btn" href="#register">Register</a>
+        </div>
       </nav>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION WITH LIVE COUNTDOWN -->
+    <section id="hero" class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="countdown-banner">
+          <div class="countdown-label">🔴 LIVE: Next Slaughter In</div>
+          <div class="countdown-timer" id="slaughterCountdown">
+            <div class="time-unit">
+              <span class="time-value" id="hours">00</span>
+              <span class="time-label">Hours</span>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-unit">
+              <span class="time-value" id="minutes">00</span>
+              <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-unit">
+              <span class="time-value" id="seconds">00</span>
+              <span class="time-label">Seconds</span>
+            </div>
+          </div>
+          <button class="watch-live-btn" id="watchLiveBtn">📺 Watch Live Stream</button>
+        </div>
 
-    <section id="hero reveal" class="hero">
-      <div class="hero-text">
-        <h1 id="p">Fresh Verified Ranch Meat</h1>
+        <div class="hero-text">
+          <h1 class="hero-title">Fresh Verified <span class="highlight">Ranch Meat</span></h1>
+          <p class="hero-subtitle">
+            Order beef, goat, or sheep meat directly from verified farms. Watch
+            the slaughter process for complete transparency and get fresh meat
+            delivered to your door.
+          </p>
+          
+          <!-- TODAY'S FRESHEST SPOTLIGHT -->
+          <div class="freshest-spotlight">
+            <div class="spotlight-badge">🌟 TODAY'S FRESHEST</div>
+            <div class="spotlight-content">
+              <span class="spotlight-text">Premium Beef - Slaughtered 23 mins ago</span>
+              <span class="spotlight-quality">AAA Grade • Farm Fresh</span>
+            </div>
+          </div>
 
-        <p>
-          Order beef, goat, or sheep meat directly from verified farms. Watch
-          the slaughter process for complete transparency and get fresh meat
-          delivered to your door.
-        </p>
+          <div class="hero-buttons">
+            <a href="#shop" class="btn-primary pulse-btn">🛒 Shop Now</a>
+            <a href="#build-box" class="btn-secondary">📦 Build Your Box</a>
+          </div>
 
-        <div class="hero-buttons">
-          <a href="/DASHBOARD/dashboard.html" class="btn-primary">Shop</a>
-          <a href="#" class="btn-secondary">Make Your Order</a>
+          <!-- URGENCY BADGE -->
+          <div class="urgency-badge" id="urgencyBadge">
+            🚨 Only <span id="stockCount">3</span> goats left today!
+          </div>
+        </div>
+
+        <!-- FARM DISTANCE -->
+        <div class="farm-distance">
+          <div class="distance-icon">📍</div>
+          <div class="distance-text">
+            <span class="distance-label">Your meat source</span>
+            <span class="distance-value" id="farmDistance">23 km away</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Particle effect container -->
+      <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    </section>
+
+    <!-- LIVE ORDERS FEED -->
+    <section class="live-orders-feed">
+      <div class="feed-header">
+        <span class="feed-icon">📡</span>
+        <span class="feed-title">LIVE ORDERS</span>
+        <span class="pulse-dot"></span>
+      </div>
+      <div class="orders-container" id="liveOrdersContainer">
+        <!-- Orders will be dynamically inserted -->
+      </div>
+    </section>
+
+    <!-- CHOOSE YOUR ANIMAL INTERACTIVE -->
+    <section id="choose-animal" class="choose-animal reveal">
+      <h2 class="section-title">Choose Your Animal</h2>
+      <p class="section-subtitle">Select an animal and see estimated meat yield</p>
+      
+      <div class="animal-selector">
+        <div class="animal-card" data-animal="cow">
+          <div class="animal-icon">🐄</div>
+          <h3>Cow</h3>
+          <div class="animal-stats">
+            <span class="stat">~200kg yield</span>
+            <span class="price">$1200</span>
+          </div>
+          <button class="select-animal-btn">Select</button>
+        </div>
+        
+        <div class="animal-card" data-animal="goat">
+          <div class="animal-icon">🐐</div>
+          <h3>Goat</h3>
+          <div class="animal-stats">
+            <span class="stat">~15kg yield</span>
+            <span class="price">$180</span>
+          </div>
+          <button class="select-animal-btn">Select</button>
+        </div>
+        
+        <div class="animal-card" data-animal="sheep">
+          <div class="animal-icon">🐑</div>
+          <h3>Sheep</h3>
+          <div class="animal-stats">
+            <span class="stat">~18kg yield</span>
+            <span class="price">$216</span>
+          </div>
+          <button class="select-animal-btn">Select</button>
+        </div>
+        
+        <div class="animal-card" data-animal="pig">
+          <div class="animal-icon">🐷</div>
+          <h3>Pig</h3>
+          <div class="animal-stats">
+            <span class="stat">~70kg yield</span>
+            <span class="price">$840</span>
+          </div>
+          <button class="select-animal-btn">Select</button>
+        </div>
+      </div>
+
+      <div class="animal-details" id="animalDetails" style="display: none;">
+        <h3 id="selectedAnimalName"></h3>
+        <div class="yield-breakdown">
+          <div class="breakdown-item">
+            <span class="breakdown-label">Prime Cuts</span>
+            <span class="breakdown-value" id="primeCuts"></span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">Regular Cuts</span>
+            <span class="breakdown-value" id="regularCuts"></span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">Ground Meat</span>
+            <span class="breakdown-value" id="groundMeat"></span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">Bones & Organs</span>
+            <span class="breakdown-value" id="bonesOrgans"></span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- 3D CUT SELECTION DIAGRAM -->
+    <section id="cut-selection" class="cut-selection reveal">
+      <h2 class="section-title">Select Your Cuts</h2>
+      <p class="section-subtitle">Click on different parts to add to your order</p>
+      
+      <div class="cut-diagram-container">
+        <svg class="cow-diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Simplified cow diagram with clickable cuts -->
+          <g id="chuck" class="cut-part" data-cut="Chuck" data-price="8">
+            <rect x="150" y="100" width="80" height="60" rx="5" />
+            <text x="190" y="135" text-anchor="middle" fill="white">Chuck</text>
+          </g>
+          <g id="rib" class="cut-part" data-cut="Rib" data-price="15">
+            <rect x="240" y="100" width="80" height="60" rx="5" />
+            <text x="280" y="135" text-anchor="middle" fill="white">Rib</text>
+          </g>
+          <g id="loin" class="cut-part" data-cut="Loin" data-price="18">
+            <rect x="330" y="100" width="80" height="60" rx="5" />
+            <text x="370" y="135" text-anchor="middle" fill="white">Loin</text>
+          </g>
+          <g id="sirloin" class="cut-part" data-cut="Sirloin" data-price="16">
+            <rect x="420" y="100" width="80" height="60" rx="5" />
+            <text x="460" y="135" text-anchor="middle" fill="white">Sirloin</text>
+          </g>
+          <g id="round" class="cut-part" data-cut="Round" data-price="10">
+            <rect x="510" y="100" width="80" height="60" rx="5" />
+            <text x="550" y="135" text-anchor="middle" fill="white">Round</text>
+          </g>
+          <g id="brisket" class="cut-part" data-cut="Brisket" data-price="12">
+            <rect x="150" y="170" width="100" height="60" rx="5" />
+            <text x="200" y="205" text-anchor="middle" fill="white">Brisket</text>
+          </g>
+          <g id="plate" class="cut-part" data-cut="Plate" data-price="9">
+            <rect x="260" y="170" width="90" height="60" rx="5" />
+            <text x="305" y="205" text-anchor="middle" fill="white">Plate</text>
+          </g>
+          <g id="flank" class="cut-part" data-cut="Flank" data-price="14">
+            <rect x="360" y="170" width="90" height="60" rx="5" />
+            <text x="405" y="205" text-anchor="middle" fill="white">Flank</text>
+          </g>
+          <g id="shank" class="cut-part" data-cut="Shank" data-price="7">
+            <rect x="460" y="170" width="130" height="60" rx="5" />
+            <text x="525" y="205" text-anchor="middle" fill="white">Shank</text>
+          </g>
+        </svg>
+        
+        <div class="selected-cuts-panel">
+          <h3>Your Selection</h3>
+          <div id="selectedCutsList" class="cuts-list">
+            <p class="empty-state">Click cuts above to add them</p>
+          </div>
+          <div class="cuts-total">
+            <span>Total:</span>
+            <span id="cutsTotal">$0</span>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </section>
 
-    <section id="products reveal" class="features">
-      <h2>Why Choose PrimeCuts?</h2>
+    <!-- BUILD YOUR MEAT BOX -->
+    <section id="build-box" class="build-box reveal">
+      <h2 class="section-title">Build Your Own Meat Box 📦</h2>
+      <p class="section-subtitle">Customize your perfect meat package</p>
+      
+      <div class="box-builder">
+        <div class="meat-options">
+          <div class="meat-option" data-meat="beef">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d32f2f' width='100' height='100'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white'%3E🥩%3C/text%3E%3C/svg%3E" alt="Beef">
+            <h4>Beef</h4>
+            <div class="quantity-controls">
+              <button class="qty-btn minus">−</button>
+              <input type="number" class="qty-input" value="0" min="0" max="20" data-price="12">
+              <button class="qty-btn plus">+</button>
+            </div>
+            <span class="unit-price">$12/kg</span>
+          </div>
+          
+          <div class="meat-option" data-meat="goat">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23c62828' width='100' height='100'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white'%3E🍖%3C/text%3E%3C/svg%3E" alt="Goat">
+            <h4>Goat</h4>
+            <div class="quantity-controls">
+              <button class="qty-btn minus">−</button>
+              <input type="number" class="qty-input" value="0" min="0" max="20" data-price="12">
+              <button class="qty-btn plus">+</button>
+            </div>
+            <span class="unit-price">$12/kg</span>
+          </div>
+          
+          <div class="meat-option" data-meat="mutton">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23b71c1c' width='100' height='100'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white'%3E🥓%3C/text%3E%3C/svg%3E" alt="Mutton">
+            <h4>Mutton</h4>
+            <div class="quantity-controls">
+              <button class="qty-btn minus">−</button>
+              <input type="number" class="qty-input" value="0" min="0" max="20" data-price="12">
+              <button class="qty-btn plus">+</button>
+            </div>
+            <span class="unit-price">$12/kg</span>
+          </div>
+          
+          <div class="meat-option" data-meat="liver">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%238B4513' width='100' height='100'/%3E%3Ctext x='50' y='55' font-size='30' text-anchor='middle' fill='white'%3ELiver%3C/text%3E%3C/svg%3E" alt="Liver">
+            <h4>Liver</h4>
+            <div class="quantity-controls">
+              <button class="qty-btn minus">−</button>
+              <input type="number" class="qty-input" value="0" min="0" max="10" data-price="8">
+              <button class="qty-btn plus">+</button>
+            </div>
+            <span class="unit-price">$8/kg</span>
+          </div>
+        </div>
+        
+        <div class="box-summary">
+          <h3>Your Box Summary</h3>
+          <div id="boxItems" class="box-items">
+            <p class="empty-state">Add items to your box</p>
+          </div>
+          <div class="weight-calculator">
+            <label>Number of people:</label>
+            <input type="number" id="peopleCount" value="4" min="1" max="20">
+            <button id="calculateWeight" class="calc-btn">Calculate Recommended</button>
+            <p id="recommendation" class="recommendation"></p>
+          </div>
+          <div class="box-total">
+            <span>Total Weight:</span>
+            <span id="boxWeight">0 kg</span>
+          </div>
+          <div class="box-total price-total">
+            <span>Total Price:</span>
+            <span id="boxPrice">$0</span>
+          </div>
+          <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+      </div>
+    </section>
 
+    <!-- MEAT PRICE GRAPH -->
+    <section id="price-graph" class="price-graph reveal">
+      <h2 class="section-title">Price Trends 📈</h2>
+      <p class="section-subtitle">Track meat price changes over time</p>
+      
+      <div class="price-chart-container">
+        <canvas id="priceChart" width="800" height="300"></canvas>
+      </div>
+      
+      <div class="price-summary">
+        <div class="price-card">
+          <span class="price-label">Beef Today</span>
+          <span class="price-value">$12/kg</span>
+          <span class="price-change positive">↑ $0.50</span>
+        </div>
+        <div class="price-card">
+          <span class="price-label">Goat Today</span>
+          <span class="price-value">$12/kg</span>
+          <span class="price-change stable">→ $0.00</span>
+        </div>
+        <div class="price-card">
+          <span class="price-label">Mutton Today</span>
+          <span class="price-value">$12/kg</span>
+          <span class="price-change negative">↓ $0.30</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI RECOMMENDED CUTS -->
+    <section id="ai-recommendations" class="ai-recommendations reveal">
+      <h2 class="section-title">🤖 AI Recommended for You</h2>
+      <p class="section-subtitle">Based on popular orders in your area</p>
+      
+      <div class="recommendation-grid">
+        <div class="rec-card">
+          <div class="rec-badge">🔥 TRENDING</div>
+          <h3>BBQ Pack</h3>
+          <div class="rec-contents">
+            <span>• 2kg Ribs</span>
+            <span>• 1kg Sausages</span>
+            <span>• 1kg Brisket</span>
+          </div>
+          <div class="rec-price">$96</div>
+          <button class="rec-btn">Quick Add</button>
+        </div>
+        
+        <div class="rec-card">
+          <div class="rec-badge">👨‍👩‍👧‍👦 FAMILY</div>
+          <h3>Family Pack</h3>
+          <div class="rec-contents">
+            <span>• 3kg Mixed Beef</span>
+            <span>• 2kg Goat</span>
+            <span>• 1kg Liver</span>
+          </div>
+          <div class="rec-price">$140</div>
+          <button class="rec-btn">Quick Add</button>
+        </div>
+        
+        <div class="rec-card">
+          <div class="rec-badge">⚡ QUICK</div>
+          <h3>Small Order</h3>
+          <div class="rec-contents">
+            <span>• 1kg Beef</span>
+            <span>• 500g Liver</span>
+          </div>
+          <div class="rec-price">$16</div>
+          <button class="rec-btn">Quick Add</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEAT FRESHNESS METER -->
+    <section id="freshness-meter" class="freshness-meter reveal">
+      <h2 class="section-title">Track Your Order Freshness 🌡️</h2>
+      
+      <div class="freshness-timeline">
+        <div class="timeline-step active" id="step-slaughtered">
+          <div class="step-icon">🔪</div>
+          <div class="step-label">Just Slaughtered</div>
+          <div class="step-time">12:30 PM</div>
+        </div>
+        
+        <div class="timeline-connector active"></div>
+        
+        <div class="timeline-step active" id="step-packed">
+          <div class="step-icon">📦</div>
+          <div class="step-label">Packed</div>
+          <div class="step-time">1:15 PM</div>
+        </div>
+        
+        <div class="timeline-connector"></div>
+        
+        <div class="timeline-step" id="step-transit">
+          <div class="step-icon">🚚</div>
+          <div class="step-label">In Transit</div>
+          <div class="step-time">Est. 2:00 PM</div>
+        </div>
+        
+        <div class="timeline-connector"></div>
+        
+        <div class="timeline-step" id="step-delivered">
+          <div class="step-icon">✅</div>
+          <div class="step-label">Delivered</div>
+          <div class="step-time">Est. 2:45 PM</div>
+        </div>
+      </div>
+      
+      <div class="freshness-info">
+        <p>Your meat is currently: <strong id="currentStatus">Being Packed</strong></p>
+        <div class="freshness-bar">
+          <div class="freshness-fill" id="freshnessFill" style="width: 50%"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERY BIKE TRACKER -->
+    <section id="delivery-tracker" class="delivery-tracker reveal">
+      <h2 class="section-title">Live Delivery Tracking 🛵</h2>
+      <p class="section-subtitle">Watch your order come to you in real-time</p>
+      
+      <div class="tracker-container">
+        <div class="tracker-map" id="trackerMap">
+          <div class="map-marker farm-marker">🏭</div>
+          <div class="map-marker bike-marker" id="bikeMarker">🛵</div>
+          <div class="map-marker home-marker">🏠</div>
+          <svg class="route-line" width="100%" height="100%">
+            <path id="routePath" stroke="#ff4d4d" stroke-width="3" fill="none" stroke-dasharray="10,5"/>
+          </svg>
+        </div>
+        
+        <div class="tracker-info">
+          <div class="driver-card">
+            <div class="driver-avatar">👨‍🦱</div>
+            <div class="driver-details">
+              <h4>John Kamau</h4>
+              <div class="driver-rating">⭐⭐⭐⭐⭐</div>
+              <span class="driver-vehicle">Motorcycle • KCB 123X</span>
+            </div>
+          </div>
+          
+          <div class="delivery-stats">
+            <div class="stat">
+              <span class="stat-label">Distance Remaining</span>
+              <span class="stat-value" id="distanceRemaining">5.2 km</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Est. Arrival</span>
+              <span class="stat-value" id="estArrival">18 mins</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Current Speed</span>
+              <span class="stat-value" id="currentSpeed">42 km/h</span>
+            </div>
+          </div>
+          
+          <button class="call-driver-btn">📞 Call Driver</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAUGHTER DAY BOOKING CALENDAR -->
+    <section id="booking-calendar" class="booking-calendar reveal">
+      <h2 class="section-title">Book Your Slaughter Day 📅</h2>
+      <p class="section-subtitle">Choose when you want your animal slaughtered</p>
+      
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <button class="calendar-nav prev" id="prevMonth">←</button>
+          <h3 id="currentMonth">April 2026</h3>
+          <button class="calendar-nav next" id="nextMonth">→</button>
+        </div>
+        
+        <div class="calendar-grid" id="calendarGrid">
+          <!-- Calendar days will be generated by JS -->
+        </div>
+        
+        <div class="booking-legend">
+          <span class="legend-item"><span class="dot available"></span> Available</span>
+          <span class="legend-item"><span class="dot limited"></span> Limited</span>
+          <span class="legend-item"><span class="dot booked"></span> Fully Booked</span>
+        </div>
+        
+        <div class="booking-summary" id="bookingSummary" style="display: none;">
+          <h4>Selected Date: <span id="selectedDate"></span></h4>
+          <p>Available slots: <span id="availableSlots"></span></p>
+          <button class="confirm-booking-btn">Confirm Booking</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTANT PRICE NEGOTIATION -->
+    <section id="price-negotiation" class="price-negotiation reveal">
+      <h2 class="section-title">Instant Price Negotiation 💬</h2>
+      <p class="section-subtitle">Request a discount and get instant AI approval</p>
+      
+      <div class="negotiation-container">
+        <div class="negotiation-panel">
+          <div class="order-summary-mini">
+            <h4>Your Cart</h4>
+            <p>3kg Beef @ $12/kg = $36</p>
+            <p>2kg Goat @ $12/kg = $24</p>
+            <p class="total">Subtotal: $60</p>
+          </div>
+          
+          <div class="negotiation-options">
+            <button class="negotiate-btn" data-discount="5">Request 5% Off</button>
+            <button class="negotiate-btn" data-discount="10">Request 10% Off</button>
+            <button class="negotiate-btn" data-discount="15">Request 15% Off</button>
+          </div>
+          
+          <div class="negotiation-result" id="negotiationResult"></div>
+          
+          <div class="final-price" id="finalPrice"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FARMER RATING LEADERBOARD -->
+    <section id="farmer-leaderboard" class="farmer-leaderboard reveal">
+      <h2 class="section-title">Top Rated Farmers 🏆</h2>
+      <p class="section-subtitle">Our most trusted and highest quality suppliers</p>
+      
+      <div class="leaderboard">
+        <div class="leaderboard-item rank-1">
+          <div class="rank-badge">🥇</div>
+          <div class="farmer-avatar">
+            <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=100" alt="Farm">
+          </div>
+          <div class="farmer-info-lb">
+            <h3>Green Valley Farm</h3>
+            <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+            <span class="orders">2,450 orders</span>
+          </div>
+          <div class="farmer-stats">
+            <span class="stat">98% On-time</span>
+            <span class="stat">100% Quality</span>
+          </div>
+        </div>
+        
+        <div class="leaderboard-item rank-2">
+          <div class="rank-badge">🥈</div>
+          <div class="farmer-avatar">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=100" alt="Farm">
+          </div>
+          <div class="farmer-info-lb">
+            <h3>Sunrise Ranch</h3>
+            <div class="rating">⭐⭐⭐⭐⭐ 4.9</div>
+            <span class="orders">2,180 orders</span>
+          </div>
+          <div class="farmer-stats">
+            <span class="stat">96% On-time</span>
+            <span class="stat">99% Quality</span>
+          </div>
+        </div>
+        
+        <div class="leaderboard-item rank-3">
+          <div class="rank-badge">🥉</div>
+          <div class="farmer-avatar">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=100" alt="Farm">
+          </div>
+          <div class="farmer-info-lb">
+            <h3>Prime Livestock Co.</h3>
+            <div class="rating">⭐⭐⭐⭐⭐ 4.9</div>
+            <span class="orders">1,890 orders</span>
+          </div>
+          <div class="farmer-stats">
+            <span class="stat">97% On-time</span>
+            <span class="stat">98% Quality</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEAT MAP OF ORDERS -->
+    <section id="order-heatmap" class="order-heatmap reveal">
+      <h2 class="section-title">Popular Order Areas 🔥</h2>
+      <p class="section-subtitle">See where people are ordering from</p>
+      
+      <div class="heatmap-container">
+        <div class="heatmap-region hot" data-region="Nairobi">
+          <span class="region-name">Nairobi</span>
+          <span class="region-orders">1,234 orders today</span>
+        </div>
+        <div class="heatmap-region warm" data-region="Kiambu">
+          <span class="region-name">Kiambu</span>
+          <span class="region-orders">456 orders today</span>
+        </div>
+        <div class="heatmap-region medium" data-region="Machakos">
+          <span class="region-name">Machakos</span>
+          <span class="region-orders">234 orders today</span>
+        </div>
+        <div class="heatmap-region cool" data-region="Nakuru">
+          <span class="region-name">Nakuru</span>
+          <span class="region-orders">123 orders today</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FARMER LIVE STREAM -->
+    <section id="farmer-livestream" class="farmer-livestream reveal">
+      <h2 class="section-title">Live From the Farm 🧑‍🌾</h2>
+      <p class="section-subtitle">Watch our farms in real-time</p>
+      
+      <div class="livestream-grid">
+        <div class="stream-card">
+          <div class="stream-video">
+            <div class="live-badge">🔴 LIVE</div>
+            <iframe src="https://www.youtube.com/embed/mEgEUmKuFX0" allowfullscreen></iframe>
+          </div>
+          <div class="stream-info">
+            <h4>Green Valley Farm</h4>
+            <span>Laikipia • 234 watching</span>
+          </div>
+        </div>
+        
+        <div class="stream-card">
+          <div class="stream-video">
+            <div class="live-badge">🔴 LIVE</div>
+            <iframe src="https://www.youtube.com/embed/2Pdeh_Vg4kc" allowfullscreen></iframe>
+          </div>
+          <div class="stream-info">
+            <h4>Sunrise Ranch</h4>
+            <span>Nakuru • 156 watching</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXISTING SECTIONS (Enhanced) -->
+    <section id="features" class="features reveal">
+      <h2 class="section-title">Why Choose PrimeCuts?</h2>
       <div class="feature-grid">
         <div class="feature-card">
+          <div class="feature-icon">✓</div>
           <h3>100% Fresh</h3>
           <p>All animals are sourced directly from trusted farms.</p>
         </div>
-
         <div class="feature-card">
+          <div class="feature-icon">📹</div>
           <h3>Transparency</h3>
           <p>Watch slaughtering videos linked to your order.</p>
         </div>
-
         <div class="feature-card">
+          <div class="feature-icon">⚡</div>
           <h3>Fast Delivery</h3>
           <p>Fresh meat delivered quickly to your location.</p>
         </div>
-
         <div class="feature-card">
+          <div class="feature-icon">🏅</div>
           <h3>Farm Verified</h3>
           <p>Every animal is inspected before slaughter.</p>
         </div>
@@ -76,152 +675,231 @@
     </section>
 
     <!-- PRODUCTS -->
-
-    <section id="products reveal" class="products">
-      <h2>Available Meat Stock</h2>
-
+    <section id="shop" class="products reveal">
+      <h2 class="section-title">Available Meat Stock</h2>
       <div class="product-grid">
         <div class="product-card">
-          <img src="/ASSETS/beef.jpg" alt="Cow" />
-
-          <h3>Beef</h3>
-
-          <p>Fresh Farm beef available per kg.</p>
-
-          <span>$1200</span>
-
-          <button>
-            <a href="/DASHBOARD/dashboard.html" id="cd">Order Now</a>
-          </button>
+          <div class="product-badge">FRESH</div>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23d32f2f' width='200' height='200'/%3E%3Ctext x='100' y='110' font-size='80' text-anchor='middle' fill='white'%3E🥩%3C/text%3E%3C/svg%3E" alt="Beef" />
+          <h3>Premium Beef</h3>
+          <p>Fresh farm beef available per kg.</p>
+          <div class="product-rating">⭐⭐⭐⭐⭐ (342)</div>
+          <span class="product-price">$12/kg</span>
+          <button class="product-btn">Order Now</button>
         </div>
-
+        
         <div class="product-card">
-          <img src="/ASSETS/mutton.jpg" alt="Goat" />
-
-          <h3>Mutton</h3>
-
+          <div class="product-badge halal-badge">HALAL ☪️</div>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23c62828' width='200' height='200'/%3E%3Ctext x='100' y='110' font-size='80' text-anchor='middle' fill='white'%3E🍖%3C/text%3E%3C/svg%3E" alt="Goat" />
+          <h3>Fresh Chevon</h3>
+          <p>Fresh farm goat meat available per kg.</p>
+          <div class="product-rating">⭐⭐⭐⭐⭐ (289)</div>
+          <span class="product-price">$12/kg</span>
+          <button class="product-btn">Order Now</button>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge halal-badge">HALAL ☪️</div>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23b71c1c' width='200' height='200'/%3E%3Ctext x='100' y='110' font-size='80' text-anchor='middle' fill='white'%3E🥓%3C/text%3E%3C/svg%3E" alt="Mutton" />
+          <h3>Premium Mutton</h3>
           <p>Fresh farm mutton available per kg.</p>
-
-          <span>$12/kg</span>
-
-          <button>
-            <a href="/DASHBOARD/dashboard.html" id="cd">Order Now</a>
-          </button>
+          <div class="product-rating">⭐⭐⭐⭐⭐ (215)</div>
+          <span class="product-price">$12/kg</span>
+          <button class="product-btn">Order Now</button>
         </div>
-
+        
         <div class="product-card">
-          <img src="/ASSETS/goat.jpg" alt="Goat" />
-
-          <h3>Chevon</h3>
-
-          <p>Fresh farm chevon available per kg.</p>
-
-          <span>$12/kg</span>
-
-          <button>
-            <a href="/DASHBOARD/dashboard.html" id="cd">Order Now</a>
-          </button>
-        </div>
-
-        <div class="product-card">
-          <img src="/ASSETS/pork.jpg" alt="Pork" />
-
-          <h3>Pork</h3>
-
+          <div class="product-badge">POPULAR</div>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23a8321d' width='200' height='200'/%3E%3Ctext x='100' y='110' font-size='80' text-anchor='middle' fill='white'%3E🍗%3C/text%3E%3C/svg%3E" alt="Pork" />
+          <h3>Farm Pork</h3>
           <p>Fresh farm pork available per kg.</p>
+          <div class="product-rating">⭐⭐⭐⭐☆ (178)</div>
+          <span class="product-price">$12/kg</span>
+          <button class="product-btn">Order Now</button>
+        </div>
+      </div>
+    </section>
 
-          <span>$12/kg</span>
+    <!-- TESTIMONIALS -->
+    <section class="testimonials reveal">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            "Freshest meat I've ever ordered! The transparency feature is
+            amazing – I watched my goat being slaughtered live. Highly recommend
+            PrimeCuts!"
+          </p>
+          <div class="customer">
+            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Customer" />
+            <div>
+              <h4>Mary W.</h4>
+              <span>Nairobi</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            "Delivery in under 2 hours! The meat was vacuum-packed and super
+            fresh. I love the farmer verification process."
+          </p>
+          <div class="customer">
+            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Customer" />
+            <div>
+              <h4>John K.</h4>
+              <span>Kiambu</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="stars">★★★★☆</div>
+          <p>
+            "Great service and excellent cuts. The order tracking let me know
+            exactly when my meat was being slaughtered. Will order again!"
+          </p>
+          <div class="customer">
+            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Customer" />
+            <div>
+              <h4>Grace M.</h4>
+              <span>Machakos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <button>
-            <a href="/DASHBOARD/dashboard.html" id="cd">Order Now</a>
+    <!-- STATS -->
+    <section class="stats-section reveal">
+      <h2 class="section-title">PrimeCuts by the Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-count="500">0</div>
+          <p>Verified Farms</p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="10000">0</div>
+          <p>Orders Delivered</p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="98">0</div>
+          <p>Customer Satisfaction</p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="2">0</div>
+          <p>Hour Avg Delivery</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq reveal">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <button class="faq-question">
+            Is the meat halal? <span>+</span>
           </button>
+          <div class="faq-answer">
+            Yes, all our meat is sourced from certified halal slaughterhouses.
+            We ensure proper Islamic guidelines are followed.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I choose the specific animal? <span>+</span>
+          </button>
+          <div class="faq-answer">
+            Absolutely! When ordering, you can request a specific animal from
+            our verified farms (subject to availability).
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            How fast is delivery? <span>+</span>
+          </button>
+          <div class="faq-answer">
+            We deliver within 2–4 hours in Nairobi and surrounding counties.
+            Same-day delivery for orders placed before noon.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I watch the slaughter live? <span>+</span>
+          </button>
+          <div class="faq-answer">
+            Yes! Every order includes a private YouTube live stream link so you
+            can watch the process for full transparency.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- TRANSPARENCY -->
-
-    <section id="transparency" class="transparency reveal">
-      <h2>Slaughter Transparency</h2>
-      <p>Watch the verified slaughter process for your order.</p>
-
-      <div class="video-grid">
-        <div class="video-card">
-          <iframe
-            src="https://www.youtube.com/embed/mEgEUmKuFX0"
-            allowfullscreen
-          ></iframe>
-          <p>Verified Slaughter Process</p>
-        </div>
-
-        <div class="video-card">
-          <iframe
-            src="https://www.youtube.com/embed/2Pdeh_Vg4kc"
-            allowfullscreen
-          ></iframe>
-          <p>Meat Inspection Process</p>
-        </div>
+    <!-- NEWSLETTER -->
+    <section class="newsletter reveal">
+      <h2 class="section-title">Get Fresh Updates & Discounts</h2>
+      <p>Subscribe to our newsletter and get 10% off your first order!</p>
+      <div class="newsletter-form">
+        <input type="email" id="newsEmail" placeholder="Your email address" />
+        <button id="subscribeBtn">Subscribe</button>
       </div>
+      <div id="newsMsg" style="margin-top: 10px;"></div>
     </section>
 
-    <!-- WEATHER -->
-
-    <section id="weather reveal" class="weather">
-      <h2>Delivery Weather</h2>
-
-      <p>Weather conditions in your area affect delivery times.</p>
-
-      <div class="weather-card">
-        <h3 id="city">Loading...</h3>
-
-        <p>Temperature: <span id="temp"></span>°C</p>
-
-        <p>Condition: <span id="condition"></span></p>
-      </div>
-    </section>
-
-    <!-- JOBS -->
-
-    <section id="jobs reveal" class="jobs">
-      <h2>Join Our Team</h2>
-
-      <p>Apply for available positions in our company.</p>
-
-      <div class="job-grid">
-        <div class="job-card">
-          <h3>Slaughter Technician</h3>
-          <button>Apply</button>
-        </div>
-
-        <div class="job-card">
-          <h3>Delivery Driver</h3>
-          <button>Apply</button>
-        </div>
-
-        <div class="job-card">
-          <h3>Sanitation Officer</h3>
-          <button>Apply</button>
-        </div>
-
-        <div class="job-card">
-          <h3>Accounts Officer</h3>
-          <button>Apply</button>
-        </div>
-
-        <div class="job-card">
-          <h3>Meat Dressing Specialist</h3>
-          <button>Apply</button>
-        </div>
+    <!-- PAYMENT METHODS -->
+    <section class="payment-methods reveal">
+      <h2 class="section-title">Secure Payment Methods</h2>
+      <div class="payment-icons">
+        <div class="payment-card">💳 M-Pesa</div>
+        <div class="payment-card">💳 Visa</div>
+        <div class="payment-card">💳 Mastercard</div>
+        <div class="payment-card">💳 PayPal</div>
+        <div class="payment-card">💰 Cash on Delivery</div>
       </div>
     </section>
 
     <!-- FOOTER -->
-
     <footer>
-      <p>
-        © 2026 PrimeCuts <br /><br />
-        Farm Meat Marketplace
-      </p>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>PrimeCuts</h3>
+          <p>Fresh Farm Meat Delivered to Your Door</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <a href="#shop">Shop</a>
+          <a href="#farmers">Farmers</a>
+          <a href="#transparency">Transparency</a>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: info@primecuts.co.ke</p>
+          <p>Phone: +254 700 000000</p>
+        </div>
+      </div>
+      <p class="footer-bottom">© 2026 PrimeCuts - Farm Meat Marketplace</p>
     </footer>
+
+    <!-- FLOATING QUICK ORDER BUTTON -->
+    <button class="floating-order" id="floatingOrder">
+      🛒 Quick Order
+    </button>
+
+    <!-- Modal for Watch Live Stream -->
+    <div id="liveStreamModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>🔴 Live Slaughter Stream</h2>
+        <div class="modal-video">
+          <iframe src="https://www.youtube.com/embed/mEgEUmKuFX0?autoplay=1" allowfullscreen></iframe>
+        </div>
+        <p>Order ID: #PC-2026-0401</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

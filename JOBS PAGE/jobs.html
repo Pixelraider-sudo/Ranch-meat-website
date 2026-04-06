@@ -2,88 +2,883 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>PrimeCuts | Careers</title>
-    <link rel="stylesheet" href="/JOBS PAGE/style.css" />
-    <script src="/JOBS PAGE/INDEX.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Careers at PrimeCuts | Join Our Team</title>
+    <link rel="stylesheet" href="/JOBS PAGE/jobs.css" />
+     <script src="/JOBS PAGE/jobs.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@400;600;700&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
   </head>
-
   <body>
+    <!-- NAVBAR -->
     <header>
       <nav class="navbar">
-        <div class="logo">PrimeCuts</div>
-
+        <div class="logo">
+          <span class="logo-icon">🥩</span>
+          <span class="logo-text">PrimeCuts</span>
+        </div>
         <ul class="nav-links">
-          <li><a href="/LANDING PAGE/index.html">Home</a></li>
-          <li><a href="/DASHBOARD/dashboard.html">Shop</a></li>
-          <li><a href="/FARMER PAGE/index.html">Farmers</a></li>
-          <li><a href="/TRANSPARENCY/index.html">Transparency</a></li>
-          <li><a href="/JOBS PAGE/index.html">Jobs</a></li>
-          <li><a href="/Register/Login/login.html">Login</a></li>
+          <li><a href="/LANDING PAGE/landing.html">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#farmers">Farmers</a></li>
+          <li><a href="#transparency">Transparency</a></li>
+          <li><a href="#jobs" class="active">Jobs</a></li>
         </ul>
-
-        <a class="cta-btn" href="/Register/register.html">Register</a>
+        <div class="nav-actions">
+          <button class="dark-mode-toggle" id="darkModeToggle">
+            <span class="icon">🌙</span>
+          </button>
+          <a class="cta-btn" href="#apply">Apply Now</a>
+        </div>
       </nav>
     </header>
-    <header>
-      <h1>Careers at PrimeCuts</h1>
-      <p>Help us transform the meat marketplace in Kenya.</p>
-    </header>
 
-    <section>
-      <h2>Open Positions</h2>
-
-      <div class="job-grid">
-        <div class="job-card">
-          <h3>Delivery Rider</h3>
-          <p>📍 Location: Nairobi</p>
-          <p>Deliver PrimeCuts orders safely to customers.</p>
+    <!-- HERO SECTION -->
+    <section class="careers-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="live-counter">
+          <span class="counter-icon">🔥</span>
+          <span id="liveApplicants">3</span> people applying right now
         </div>
 
-        <div class="job-card">
-          <h3>Veterinary Inspector</h3>
-          <p>📍 Location: Nakuru</p>
-          <p>Inspect livestock health and safety.</p>
+        <h1 class="hero-title">
+          Join the <span class="highlight">PrimeCuts</span> Family
+        </h1>
+        <p class="hero-subtitle">
+          Transform Kenya's meat marketplace. Deliver fresh, transparent,
+          farm-to-table meat to thousands.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number" data-count="15">0</div>
+            <p>Open Positions</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="120">0</div>
+            <p>Applications Today</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="30">0</div>
+            <p>Riders Hired</p>
+          </div>
         </div>
 
-        <div class="job-card">
-          <h3>Marketplace Manager</h3>
-          <p>📍 Location: Nairobi</p>
-          <p>Manage farmer partnerships and marketplace operations.</p>
+        <div class="hero-buttons">
+          <a href="#open-positions" class="btn-primary">View Open Positions</a>
+          <a href="#video-intro" class="btn-secondary">Watch Video</a>
         </div>
       </div>
     </section>
-    <section>
-      <h2>Apply for a Job</h2>
 
-      <form id="jobForm">
-        <label>Full Name</label>
-        <input type="text" required />
+    <!-- WHY JOIN PRIMECUTS -->
+    <section id="why-join" class="why-join reveal">
+      <h2 class="section-title">Why Join PrimeCuts?</h2>
+      <p class="section-subtitle">
+        Be part of something bigger than just a job
+      </p>
 
-        <label>Email</label>
-        <input type="email" required />
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🌾</div>
+          <h3>Support Local Farmers</h3>
+          <p>
+            Help connect verified farms directly with customers, ensuring fair
+            prices and sustainable farming.
+          </p>
+        </div>
 
-        <label>Phone Number</label>
-        <input id="phone" type="tel" placeholder="+254712345678" required />
-        <div id="phone-error" class="error"></div>
+        <div class="why-card">
+          <div class="why-icon">🔬</div>
+          <h3>Improve Food Safety</h3>
+          <p>
+            Be part of the transparent slaughter process that revolutionizes
+            meat safety standards in Kenya.
+          </p>
+        </div>
 
-        <label>Position Applying For</label>
-        <select required>
-          <option>Delivery Rider</option>
-          <option>Veterinary Inspector</option>
-          <option>Marketplace Manager</option>
-        </select>
+        <div class="why-card">
+          <div class="why-icon">🚀</div>
+          <h3>Fast-Growing Startup</h3>
+          <p>
+            Join a company scaling rapidly with exciting growth opportunities
+            across Kenya.
+          </p>
+        </div>
 
-        <label>Upload CV</label>
-        <input id="cvUpload" type="file" required />
-        <div id="fileName" class="file-name"></div>
+        <div class="why-card">
+          <div class="why-icon">🥩</div>
+          <h3>Deliver Freshness</h3>
+          <p>
+            Help deliver the freshest, highest-quality meat from farm to
+            doorstep in under 2 hours.
+          </p>
+        </div>
+      </div>
+    </section>
 
-        <label>Why should we hire you?</label>
-        <textarea rows="5" required></textarea>
+    <!-- VIDEO INTRODUCTION -->
+    <section id="video-intro" class="video-intro reveal">
+      <h2 class="section-title">Meet Our CEO</h2>
+      <p class="section-subtitle">Hear about our mission and vision</p>
 
-        <button type="submit">Submit Application</button>
+      <div class="video-container">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/mEgEUmKuFX0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-info">
+          <h3>Our Mission to Transform Kenya's Meat Industry</h3>
+          <p>
+            At PrimeCuts, we're not just delivering meat – we're building trust,
+            supporting farmers, and ensuring food safety through radical
+            transparency. Join us in this journey!
+          </p>
+          <div class="ceo-signature">
+            <div class="ceo-avatar">👨‍💼</div>
+            <div>
+              <strong>James Mwangi</strong>
+              <span>CEO & Founder</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div id="successMsg"></div>
+    <!-- BENEFITS & PERKS -->
+    <section id="benefits" class="benefits reveal">
+      <h2 class="section-title">Benefits & Perks 🎁</h2>
+      <p class="section-subtitle">We take care of our team</p>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">⛽</div>
+          <h3>Fuel Allowance</h3>
+          <p>Monthly fuel stipend for delivery riders</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🥩</div>
+          <h3>Free Meat Monthly</h3>
+          <p>5kg of premium meat every month for all employees</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🏥</div>
+          <h3>Medical Cover</h3>
+          <p>Comprehensive health insurance for you and your family</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⏰</div>
+          <h3>Flexible Shifts</h3>
+          <p>Choose schedules that work for your lifestyle</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">📚</div>
+          <h3>Training Provided</h3>
+          <p>Comprehensive onboarding and continuous skill development</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">📈</div>
+          <h3>Growth Opportunities</h3>
+          <p>Clear career progression paths and promotions</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <h3>Performance Bonuses</h3>
+          <p>Monthly and quarterly incentives for top performers</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">👥</div>
+          <h3>Team Events</h3>
+          <p>Regular team building activities and celebrations</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM CULTURE -->
+    <section id="culture" class="team-culture reveal">
+      <h2 class="section-title">Our Culture 👥</h2>
+      <p class="section-subtitle">What it's really like working here</p>
+
+      <div class="culture-grid">
+        <div class="culture-card">
+          <div class="culture-image">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600"
+              alt="Team"
+            />
+          </div>
+          <div class="culture-content">
+            <h3>Collaborative Environment</h3>
+            <p>
+              Work with passionate people who care about making a real impact on
+              Kenya's food system.
+            </p>
+          </div>
+        </div>
+
+        <div class="culture-card">
+          <div class="culture-image">
+            <img
+              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600"
+              alt="Growth"
+            />
+          </div>
+          <div class="culture-content">
+            <h3>Continuous Learning</h3>
+            <p>
+              Access to training programs, workshops, and mentorship from
+              industry experts.
+            </p>
+          </div>
+        </div>
+
+        <div class="culture-card">
+          <div class="culture-image">
+            <img
+              src="https://images.unsplash.com/photo-1551135049-8a33b5883817?w=600"
+              alt="Impact"
+            />
+          </div>
+          <div class="culture-content">
+            <h3>Real Impact</h3>
+            <p>
+              See the direct effect of your work on farmers' livelihoods and
+              customer satisfaction.
+            </p>
+          </div>
+        </div>
+
+        <div class="culture-card">
+          <div class="culture-image">
+            <img
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600"
+              alt="Flexibility"
+            />
+          </div>
+          <div class="culture-content">
+            <h3>Work-Life Balance</h3>
+            <p>
+              Flexible schedules and supportive management that values your
+              personal time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMPLOYEE TESTIMONIALS -->
+    <section class="testimonials reveal">
+      <h2 class="section-title">What Our Team Says ⭐</h2>
+      <p class="section-subtitle">Hear from people who work here</p>
+
+      <div class="testimonial-slider">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            "Best decision I ever made! The team is supportive, hours are
+            flexible, and I love being part of something that helps farmers."
+          </p>
+          <div class="employee">
+            <img
+              src="https://randomuser.me/api/portraits/men/32.jpg"
+              alt="Employee"
+            />
+            <div>
+              <h4>David Kimani</h4>
+              <span>Delivery Rider - 2 years</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            "The training was excellent, and management truly cares about our
+            growth. I started as a rider and now I'm a team lead!"
+          </p>
+          <div class="employee">
+            <img
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt="Employee"
+            />
+            <div>
+              <h4>Grace Wanjiru</h4>
+              <span>Team Lead - 3 years</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            "As a vet inspector, I appreciate the emphasis on food safety and
+            the modern facilities we work with. Very professional environment."
+          </p>
+          <div class="employee">
+            <img
+              src="https://randomuser.me/api/portraits/men/22.jpg"
+              alt="Employee"
+            />
+            <div>
+              <h4>Dr. Peter Omondi</h4>
+              <span>Veterinary Inspector - 1 year</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOB FILTERS & LISTINGS -->
+    <section id="open-positions" class="job-listings reveal">
+      <h2 class="section-title">Open Positions</h2>
+      <p class="section-subtitle">Find your perfect role</p>
+
+      <!-- Filters -->
+      <div class="job-filters">
+        <div class="filter-group">
+          <label>📍 Location</label>
+          <select id="locationFilter">
+            <option value="all">All Locations</option>
+            <option value="nairobi">Nairobi</option>
+            <option value="nakuru">Nakuru</option>
+            <option value="kiambu">Kiambu</option>
+            <option value="machakos">Machakos</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>🏢 Department</label>
+          <select id="departmentFilter">
+            <option value="all">All Departments</option>
+            <option value="logistics">Logistics</option>
+            <option value="veterinary">Veterinary</option>
+            <option value="operations">Operations</option>
+            <option value="finance">Finance</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>💼 Type</label>
+          <select id="typeFilter">
+            <option value="all">All Types</option>
+            <option value="full-time">Full Time</option>
+            <option value="part-time">Part Time</option>
+            <option value="contract">Contract</option>
+          </select>
+        </div>
+
+        <button class="filter-reset" id="resetFilters">Reset Filters</button>
+      </div>
+
+      <!-- Job Cards -->
+      <div class="job-grid" id="jobGrid">
+        <!-- Logistics Department -->
+        <div
+          class="job-card"
+          data-location="nairobi"
+          data-department="logistics"
+          data-type="full-time"
+        >
+          <div class="urgent-badge">🚨 URGENT HIRING</div>
+          <div class="job-header">
+            <h3>Delivery Rider</h3>
+            <div class="job-meta">
+              <span class="location">📍 Nairobi</span>
+              <span class="department">🏢 Logistics</span>
+            </div>
+          </div>
+          <p class="job-description">
+            Deliver PrimeCuts orders safely and efficiently to customers across
+            Nairobi.
+          </p>
+          <div class="job-details">
+            <span class="salary">💰 KES 25,000 - 40,000</span>
+            <span class="type">Full Time</span>
+          </div>
+          <button class="view-job-btn" data-job="delivery-rider">
+            View Details
+          </button>
+        </div>
+
+        <div
+          class="job-card"
+          data-location="nakuru"
+          data-department="veterinary"
+          data-type="full-time"
+        >
+          <div class="job-header">
+            <h3>Veterinary Inspector</h3>
+            <div class="job-meta">
+              <span class="location">📍 Nakuru</span>
+              <span class="department">🏢 Veterinary</span>
+            </div>
+          </div>
+          <p class="job-description">
+            Inspect livestock health, safety, and ensure compliance with food
+            safety standards.
+          </p>
+          <div class="job-details">
+            <span class="salary">💰 KES 50,000 - 80,000</span>
+            <span class="type">Full Time</span>
+          </div>
+          <button class="view-job-btn" data-job="vet-inspector">
+            View Details
+          </button>
+        </div>
+
+        <div
+          class="job-card"
+          data-location="nairobi"
+          data-department="operations"
+          data-type="full-time"
+        >
+          <div class="limited-badge">LIMITED POSITIONS</div>
+          <div class="job-header">
+            <h3>Marketplace Manager</h3>
+            <div class="job-meta">
+              <span class="location">📍 Nairobi</span>
+              <span class="department">🏢 Operations</span>
+            </div>
+          </div>
+          <p class="job-description">
+            Manage farmer partnerships, marketplace operations, and ensure
+            smooth supply chain.
+          </p>
+          <div class="job-details">
+            <span class="salary">💰 KES 60,000 - 90,000</span>
+            <span class="type">Full Time</span>
+          </div>
+          <button class="view-job-btn" data-job="marketplace-manager">
+            View Details
+          </button>
+        </div>
+
+        <div
+          class="job-card"
+          data-location="nairobi"
+          data-department="operations"
+          data-type="full-time"
+        >
+          <div class="urgent-badge">🚨 HIRING NOW</div>
+          <div class="job-header">
+            <h3>Slaughter Technician</h3>
+            <div class="job-meta">
+              <span class="location">📍 Nairobi</span>
+              <span class="department">🏢 Operations</span>
+            </div>
+          </div>
+          <p class="job-description">
+            Perform humane slaughter operations following halal standards and
+            food safety protocols.
+          </p>
+          <div class="job-details">
+            <span class="salary">💰 KES 30,000 - 50,000</span>
+            <span class="type">Full Time</span>
+          </div>
+          <button class="view-job-btn" data-job="slaughter-tech">
+            View Details
+          </button>
+        </div>
+
+        <div
+          class="job-card"
+          data-location="kiambu"
+          data-department="logistics"
+          data-type="part-time"
+        >
+          <div class="job-header">
+            <h3>Warehouse Assistant</h3>
+            <div class="job-meta">
+              <span class="location">📍 Kiambu</span>
+              <span class="department">🏢 Logistics</span>
+            </div>
+          </div>
+          <p class="job-description">
+            Manage inventory, organize storage, and assist with order
+            preparation and dispatch.
+          </p>
+          <div class="job-details">
+            <span class="salary">💰 KES 20,000 - 35,000</span>
+            <span class="type">Part Time</span>
+          </div>
+          <button class="view-job-btn" data-job="warehouse-assistant">
+            View Details
+          </button>
+        </div>
+
+        <div
+          class="job-card"
+          data-location="nairobi"
+          data-department="finance"
+          data-type="full-time"
+        >
+          <div class="job-header">
+            <h3>Accounts Officer</h3>
+            <div class="job-meta">
+              <span class="location">📍 Nairobi</span>
+              <span class="department">🏢 Finance</span>
+            </div>
+          </div>
+          <p class="job-description">
+            Handle financial records, process payments, and prepare monthly
+            financial reports.
+          </p>
+          <div class="job-details">
+            <span class="salary">💰 KES 45,000 - 70,000</span>
+            <span class="type">Full Time</span>
+          </div>
+          <button class="view-job-btn" data-job="accounts-officer">
+            View Details
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP OF JOB LOCATIONS -->
+    <section id="job-map" class="job-map reveal">
+      <h2 class="section-title">Where We're Hiring 📍</h2>
+      <p class="section-subtitle">Find positions near you</p>
+
+      <div class="map-container">
+        <div class="map-region" data-region="nairobi">
+          <div class="region-marker">📍</div>
+          <h3>Nairobi</h3>
+          <p>8 open positions</p>
+        </div>
+        <div class="map-region" data-region="nakuru">
+          <div class="region-marker">📍</div>
+          <h3>Nakuru</h3>
+          <p>3 open positions</p>
+        </div>
+        <div class="map-region" data-region="kiambu">
+          <div class="region-marker">📍</div>
+          <h3>Kiambu</h3>
+          <p>2 open positions</p>
+        </div>
+        <div class="map-region" data-region="machakos">
+          <div class="region-marker">📍</div>
+          <h3>Machakos</h3>
+          <p>2 open positions</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIRING TIMELINE -->
+    <section id="timeline" class="hiring-timeline reveal">
+      <h2 class="section-title">The Hiring Process ⏳</h2>
+      <p class="section-subtitle">From application to your first day</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-icon">📝</div>
+          <div class="timeline-content">
+            <h3>Apply</h3>
+            <p>Submit your application and CV online. Takes 5 minutes.</p>
+            <span class="timeline-duration">Day 1</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">📞</div>
+          <div class="timeline-content">
+            <h3>Phone Screening</h3>
+            <p>Quick 15-minute call to discuss your background and the role.</p>
+            <span class="timeline-duration">Day 3-5</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">💼</div>
+          <div class="timeline-content">
+            <h3>Interview</h3>
+            <p>
+              Meet the team and learn more about PrimeCuts. Can be in-person or
+              virtual.
+            </p>
+            <span class="timeline-duration">Day 7-10</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">✅</div>
+          <div class="timeline-content">
+            <h3>Offer</h3>
+            <p>Receive your offer letter and complete onboarding paperwork.</p>
+            <span class="timeline-duration">Day 12-14</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">🚀</div>
+          <div class="timeline-content">
+            <h3>Start Work</h3>
+            <p>Begin your journey with training and orientation.</p>
+            <span class="timeline-duration">Day 21</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERRAL PROGRAM -->
+    <section id="referral" class="referral-program reveal">
+      <div class="referral-content">
+        <div class="referral-icon">💸</div>
+        <h2>Refer a Friend, Earn KES 2,000</h2>
+        <p>
+          Know someone perfect for PrimeCuts? Refer them and get rewarded when
+          they're hired!
+        </p>
+        <button class="referral-btn" id="referralBtn">Refer Now</button>
+      </div>
+    </section>
+
+    <!-- APPLICATION FORM -->
+    <section id="apply" class="application-section reveal">
+      <h2 class="section-title">Apply Now 🚀</h2>
+      <p class="section-subtitle">Join our growing team</p>
+
+      <!-- Application Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-steps">
+          <div class="step active" data-step="1">
+            <div class="step-number">1</div>
+            <span>Personal Info</span>
+          </div>
+          <div class="step" data-step="2">
+            <div class="step-number">2</div>
+            <span>Upload CV</span>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step-number">3</div>
+            <span>Submit</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="jobForm" class="application-form">
+        <!-- Step 1: Personal Info -->
+        <div class="form-step active" data-step="1">
+          <h3>Personal Information</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input
+                type="text"
+                id="fullName"
+                required
+                placeholder="John Doe"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Email *</label>
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="john@example.com"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input
+                id="phone"
+                type="tel"
+                placeholder="+254712345678"
+                required
+              />
+              <div id="phone-error" class="error"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Position Applying For *</label>
+              <select id="position" required>
+                <option value="">Select Position</option>
+                <option value="delivery-rider">Delivery Rider</option>
+                <option value="vet-inspector">Veterinary Inspector</option>
+                <option value="marketplace-manager">Marketplace Manager</option>
+                <option value="slaughter-tech">Slaughter Technician</option>
+                <option value="warehouse-assistant">Warehouse Assistant</option>
+                <option value="accounts-officer">Accounts Officer</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="button" class="next-btn" onclick="nextStep()">
+            Next Step →
+          </button>
+        </div>
+
+        <!-- Step 2: Upload CV -->
+        <div class="form-step" data-step="2">
+          <h3>Upload Your CV</h3>
+
+          <!-- Drag & Drop CV Upload -->
+          <div class="cv-upload-area" id="cvUploadArea">
+            <div class="upload-icon">📂</div>
+            <h4>Drag & Drop your CV here</h4>
+            <p>or click to browse (PDF, DOC, DOCX - Max 5MB)</p>
+            <input type="file" id="cvUpload" accept=".pdf,.doc,.docx" hidden />
+            <div id="fileName" class="file-name"></div>
+          </div>
+
+          <!-- Resume Score Checker -->
+          <div id="resumeScore" class="resume-score" style="display: none">
+            <div class="score-header">
+              <h4>Resume Analysis</h4>
+              <div class="score-badge" id="scoreBadge"></div>
+            </div>
+            <div class="score-details" id="scoreDetails"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Why should we hire you? *</label>
+            <textarea
+              id="coverLetter"
+              rows="5"
+              required
+              placeholder="Tell us about your experience and why you'd be a great fit..."
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="prev-btn" onclick="prevStep()">
+              ← Previous
+            </button>
+            <button type="button" class="next-btn" onclick="nextStep()">
+              Next Step →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Review & Submit -->
+        <div class="form-step" data-step="3">
+          <h3>Review & Submit</h3>
+
+          <div class="review-section" id="reviewSection">
+            <h4>Application Summary</h4>
+            <div class="review-item">
+              <strong>Name:</strong> <span id="reviewName"></span>
+            </div>
+            <div class="review-item">
+              <strong>Email:</strong> <span id="reviewEmail"></span>
+            </div>
+            <div class="review-item">
+              <strong>Phone:</strong> <span id="reviewPhone"></span>
+            </div>
+            <div class="review-item">
+              <strong>Position:</strong> <span id="reviewPosition"></span>
+            </div>
+            <div class="review-item">
+              <strong>CV:</strong> <span id="reviewCV"></span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="prev-btn" onclick="prevStep()">
+              ← Previous
+            </button>
+            <button type="submit" class="submit-btn">
+              Submit Application 🚀
+            </button>
+          </div>
+        </div>
+
+        <div id="successMsg" class="success-message"></div>
       </form>
     </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>PrimeCuts Careers</h3>
+          <p>Building the future of Kenya's meat industry</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <a href="#open-positions">Open Positions</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#apply">Apply Now</a>
+        </div>
+        <div class="footer-section">
+          <h4>Contact HR</h4>
+          <p>Email: careers@primecuts.co.ke</p>
+          <p>Phone: +254 700 000000</p>
+        </div>
+      </div>
+      <p class="footer-bottom">© 2026 PrimeCuts - Equal Opportunity Employer</p>
+    </footer>
+
+    <!-- FLOATING APPLY BUTTON -->
+    <button class="floating-apply" id="floatingApply">📝 Quick Apply</button>
+
+    <!-- JOB DETAIL MODAL -->
+    <div id="jobModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <!-- REFERRAL MODAL -->
+    <div id="referralModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeReferral">&times;</span>
+        <h2>Refer a Friend 💸</h2>
+        <p>Help us find great talent and earn KES 2,000 when they're hired!</p>
+        <form id="referralForm">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" required />
+          </div>
+          <div class="form-group">
+            <label>Friend's Name</label>
+            <input type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Friend's Email</label>
+            <input type="email" required />
+          </div>
+          <div class="form-group">
+            <label>Position Recommendation</label>
+            <select required>
+              <option>Delivery Rider</option>
+              <option>Veterinary Inspector</option>
+              <option>Marketplace Manager</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn">Send Referral</button>
+        </form>
+      </div>
+    </div>
+
+   
   </body>
 </html>
