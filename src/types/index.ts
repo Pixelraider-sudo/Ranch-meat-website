@@ -159,6 +159,13 @@ export interface Testimonial {
   quote: string;
   rating: number;
 }
+export interface PlatformStat {
+  id: string;
+  label: string;
+  value: number;
+  suffix?: string;
+  prefix?: string;
+}
 
 export interface Recipe {
   id: string;

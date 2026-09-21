@@ -66,6 +66,7 @@ export const farmers: Farmer[] = [
     certifications: ["Animal Welfare Approved", "Regenerative Verified", "USDA Organic"],
     avatar: farmerPortrait,
     metrics: { orders: 18400, onTimeRate: 99.2, repeatRate: 72 },
+    county: "",
   },
   {
     id: "f2",
@@ -82,6 +83,7 @@ export const farmers: Farmer[] = [
     certifications: ["Grass-fed Certified", "Carbon Neutral Delivery"],
     avatar: farmerPortrait,
     metrics: { orders: 9600, onTimeRate: 98.4, repeatRate: 68 },
+    county: "",
   },
   {
     id: "f3",
@@ -98,6 +100,7 @@ export const farmers: Farmer[] = [
     certifications: ["Pasture Raised", "Antibiotic Free"],
     avatar: farmerPortrait,
     metrics: { orders: 7100, onTimeRate: 97.9, repeatRate: 61 },
+    county: "",
   },
 ];
 
@@ -354,9 +357,30 @@ export const platformStats: PlatformStat[] = [
 ];
 
 export const recipes: Recipe[] = [
-  { id: "rc1", title: "Reverse-Seared Ribeye", minutes: 45, difficulty: "Medium", cut: "Ribeye", image: beef },
-  { id: "rc2", title: "Herb-Crusted Lamb Rack", minutes: 60, difficulty: "Chef", cut: "Lamb rack", image: lamb },
-  { id: "rc3", title: "Buttermilk Pasture Chicken", minutes: 35, difficulty: "Easy", cut: "Chicken", image: poultry },
+  {
+    id: "rc1",
+    title: "Reverse-Seared Ribeye",
+    minutes: 45,
+    difficulty: "Medium",
+    cut: "Ribeye",
+    image: beef,
+  },
+  {
+    id: "rc2",
+    title: "Herb-Crusted Lamb Rack",
+    minutes: 60,
+    difficulty: "Chef",
+    cut: "Lamb rack",
+    image: lamb,
+  },
+  {
+    id: "rc3",
+    title: "Buttermilk Pasture Chicken",
+    minutes: 35,
+    difficulty: "Easy",
+    cut: "Chicken",
+    image: poultry,
+  },
 ];
 
 export const faqs: Faq[] = [
@@ -386,4 +410,11 @@ export const faqs: Faq[] = [
   },
 ];
 
-export const partners = ["Maison Verte", "Northline Hotels", "Cedar & Salt", "Grovehouse", "Table Nine", "Basalt Group"];
+export const partners = [
+  "Maison Verte",
+  "Northline Hotels",
+  "Cedar & Salt",
+  "Grovehouse",
+  "Table Nine",
+  "Basalt Group",
+];
