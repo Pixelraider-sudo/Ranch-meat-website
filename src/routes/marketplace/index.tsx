@@ -1,12 +1,12 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { LayoutGrid, List, Search, SlidersHorizontal } from "lucide-react";
+import { LayoutGrid, List, Search, SlidersHorizontal, X } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
 import {
   Select,
   SelectContent,
@@ -14,10 +14,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+
 import { ProductCard } from "@/components/marketplace/product-card";
 import { ProductCardSkeleton } from "@/components/marketplace/product-card-skeleton";
-import { categories } from "@/services/mock-data";
-import { getProducts, queryKeys } from "@/services/catalog.service";
+
+import { getCategories, getProducts, queryKeys } from "@/services/catalog.service";
+
 import { cn } from "@/lib/utils";
 import type { ProductSort } from "@/types";
 
@@ -31,140 +34,176 @@ export const Route = createFileRoute("/marketplace/")({
     ...(typeof search["category"] === "string" ? { category: search["category"] } : {}),
     ...(typeof search["q"] === "string" ? { q: search["q"] } : {}),
   }),
+
   head: () => ({
     meta: [
-      { title: "Marketplace — Grass-Fed Beef, Lamb & Poultry | Ranch Meat" },
+      {
+        title: "Marketplace | Premium Kenyan Meat | Ranch Meat",
+      },
       {
         name: "description",
         content:
-          "Browse traceable cuts from verified ranches. Filter by category and price, with live stock and farm provenance.",
+          "Browse premium beef, lamb and poultry from verified Kenyan ranches with transparent sourcing and cold-chain delivery.",
       },
-      { property: "og:title", content: "Ranch Meat Marketplace" },
+      {
+        property: "og:title",
+        content: "Ranch Meat Marketplace",
+      },
       {
         property: "og:description",
-        content: "Traceable cuts from verified ranches, delivered chilled next day.",
+        content: "Premium meat sourced directly from verified Kenyan ranches.",
       },
     ],
   }),
+
   component: MarketplacePage,
 });
 
 function MarketplacePage() {
   const search = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
+
   const [query, setQuery] = useState(search.q ?? "");
   const [sort, setSort] = useState<ProductSort>("featured");
-  const [maxPrice, setMaxPrice] = useState(60);
+  const [maxPrice, setMaxPrice] = useState(5000);
   const [view, setView] = useState<"grid" | "list">("grid");
 
-  const selected = useMemo(() => (search.category ? [search.category] : []), [search.category]);
+  const selectedCategories = useMemo(
+    () => (search.category ? [search.category] : []),
+    [search.category],
+  );
 
-  const productQuery = { search: query, categories: selected, sort, maxPrice };
-  const { data, isPending } = useQuery({
+  const productQuery = {
+    search: query,
+    categories: selectedCategories,
+    sort,
+    maxPrice,
+  };
+
+  const { data: categories = [] } = useQuery({
+    queryKey: queryKeys.categories,
+    queryFn: getCategories,
+  });
+
+  const { data: products = [], isPending } = useQuery({
     queryKey: queryKeys.products(productQuery),
     queryFn: () => getProducts(productQuery),
   });
 
+  const totalListings = useMemo(
+    () => categories.reduce((sum, category) => sum + category.productCount, 0),
+    [categories],
+  );
+
   const toggleCategory = (slug: string) => {
     navigate({
       search: (prev: MarketplaceSearch): MarketplaceSearch =>
-        prev.category === slug ? {} : { ...prev, category: slug },
+        prev.category === slug ? { ...(prev.q ? { q: prev.q } : {}) } : { ...prev, category: slug },
     });
   };
 
   return (
     <>
-      <div className="border-b bg-secondary/40">
+      <section className="border-b bg-secondary/40">
         <div className="mx-auto max-w-[88rem] px-4 py-14 sm:px-6 lg:px-8">
           <p className="text-eyebrow text-primary">Marketplace</p>
-          <h1 className="mt-3 text-4xl font-extrabold sm:text-5xl">Every cut, fully traced</h1>
+
+          <h1 className="mt-3 font-display text-4xl font-extrabold sm:text-5xl">
+            Premium Kenyan meat, fully traceable.
+          </h1>
+
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            {categories.reduce((sum, c) => sum + c.productCount, 0)} listings from verified ranches,
-            updated as stock leaves the cold room.
+            {totalListings} listings from verified ranches across Nairobi and Kiambu, with fresh
+            stock updated daily.
           </p>
         </div>
-      </div>
+      </section>
 
-      <div className="mx-auto grid max-w-[88rem] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[16rem_minmax(0,1fr)] lg:px-8">
-        <aside className="space-y-8" aria-label="Filters">
-          <div>
-            <p className="flex items-center gap-2 text-sm font-semibold">
-              <SlidersHorizontal className="size-4" aria-hidden="true" />
-              Filters
-            </p>
+      <div className="mx-auto grid max-w-[88rem] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:px-8">
+        <aside className="space-y-8" aria-label="Marketplace filters">
+          <div className="flex items-center gap-2">
+            <SlidersHorizontal className="size-4" />
+            <h2 className="text-sm font-semibold">Filters</h2>
           </div>
+
           <fieldset className="space-y-3">
-            <legend className="text-eyebrow mb-3 text-muted-foreground">Category</legend>
+            <legend className="mb-3 text-eyebrow text-muted-foreground">Category</legend>
+
             {categories.map((category) => (
               <div key={category.id} className="flex items-center gap-3">
                 <Checkbox
                   id={`cat-${category.slug}`}
-                  checked={selected.includes(category.slug)}
+                  checked={selectedCategories.includes(category.slug)}
                   onCheckedChange={() => toggleCategory(category.slug)}
                 />
-                <Label htmlFor={`cat-${category.slug}`} className="text-sm font-normal">
+
+                <Label
+                  htmlFor={`cat-${category.slug}`}
+                  className="cursor-pointer text-sm font-normal"
+                >
                   {category.name}
                 </Label>
               </div>
             ))}
           </fieldset>
+
           <div>
-            <p className="text-eyebrow mb-4 text-muted-foreground">Max price / kg</p>
+            <p className="mb-4 text-eyebrow text-muted-foreground">Max Price (KSh/kg)</p>
+
             <Slider
               value={[maxPrice]}
-              min={10}
-              max={60}
-              step={1}
-              onValueChange={([value]) => setMaxPrice(value ?? 60)}
-              aria-label="Maximum price per kilogram"
+              min={500}
+              max={5000}
+              step={100}
+              onValueChange={([value]) => setMaxPrice(value ?? 5000)}
             />
-            <p className="mt-3 text-sm tabular-nums text-muted-foreground">Up to ${maxPrice}</p>
+
+            <p className="mt-3 text-sm font-medium tabular-nums text-muted-foreground">
+              Up to KSh {maxPrice.toLocaleString()}
+            </p>
           </div>
         </aside>
 
         <div>
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:flex sm:flex-wrap">
             <div className="relative min-w-0 flex-1">
-              <Search
-                className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-                aria-hidden="true"
-              />
+              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+
               <Input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search cuts, farms, regions"
-                aria-label="Search products"
-                className="bg-card pl-9"
+                placeholder="Search beef, lamb, poultry..."
+                className="pl-9"
               />
             </div>
+
             <Select value={sort} onValueChange={(value) => setSort(value as ProductSort)}>
-              <SelectTrigger className="w-44 bg-card" aria-label="Sort products">
+              <SelectTrigger className="w-48">
                 <SelectValue />
               </SelectTrigger>
+
               <SelectContent>
                 <SelectItem value="featured">Featured</SelectItem>
-                <SelectItem value="price-asc">Price: low to high</SelectItem>
-                <SelectItem value="price-desc">Price: high to low</SelectItem>
-                <SelectItem value="rating">Top rated</SelectItem>
+                <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                <SelectItem value="rating">Top Rated</SelectItem>
               </SelectContent>
             </Select>
-            <div className="hidden gap-1 rounded-lg border bg-card p-1 sm:flex">
+
+            <div className="hidden gap-1 rounded-lg border p-1 sm:flex">
               <Button
                 variant={view === "grid" ? "secondary" : "ghost"}
                 size="icon"
                 className="size-8"
-                aria-label="Grid view"
-                aria-pressed={view === "grid"}
                 onClick={() => setView("grid")}
               >
                 <LayoutGrid className="size-4" />
               </Button>
+
               <Button
                 variant={view === "list" ? "secondary" : "ghost"}
                 size="icon"
                 className="size-8"
-                aria-label="List view"
-                aria-pressed={view === "list"}
                 onClick={() => setView("list")}
               >
                 <List className="size-4" />
@@ -172,8 +211,33 @@ function MarketplacePage() {
             </div>
           </div>
 
-          <p className="mt-6 text-sm text-muted-foreground" aria-live="polite">
-            {isPending ? "Loading products…" : `${data?.length ?? 0} products`}
+          {(selectedCategories.length > 0 || query) && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {selectedCategories.map((slug) => (
+                <button
+                  key={slug}
+                  onClick={() => toggleCategory(slug)}
+                  className="inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1 text-sm"
+                >
+                  {categories.find((category) => category.slug === slug)?.name}
+                  <X className="size-3" />
+                </button>
+              ))}
+
+              {query && (
+                <button
+                  onClick={() => setQuery("")}
+                  className="inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1 text-sm"
+                >
+                  "{query}"
+                  <X className="size-3" />
+                </button>
+              )}
+            </div>
+          )}
+
+          <p className="mt-6 text-sm text-muted-foreground">
+            {isPending ? "Loading products..." : `${products.length} products available`}
           </p>
 
           <div
@@ -183,28 +247,30 @@ function MarketplacePage() {
             )}
           >
             {isPending
-              ? Array.from({ length: 6 }).map((_, i) => <ProductCardSkeleton key={i} />)
-              : data?.map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} />
-                ))}
+              ? Array.from({ length: 6 }).map((_, index) => <ProductCardSkeleton key={index} />)
+              : products.map((product, index) => (
+                <ProductCard key={product.id} product={product} index={index} />
+              ))}
           </div>
 
-          {!isPending && data?.length === 0 && (
-            <div className="surface-card mt-4 p-12 text-center">
-              <p className="font-display text-lg font-bold">No products match those filters</p>
+          {!isPending && products.length === 0 && (
+            <div className="surface-card mt-6 p-12 text-center">
+              <p className="font-display text-xl font-bold">No products match your search.</p>
+
               <p className="mt-2 text-sm text-muted-foreground">
-                Try widening the price range or clearing the category filter.
+                Try clearing your filters or increasing your maximum price.
               </p>
+
               <Button
-                className="mt-6"
                 variant="outline"
+                className="mt-6"
                 onClick={() => {
                   setQuery("");
-                  setMaxPrice(60);
+                  setMaxPrice(5000);
                   navigate({ search: {} });
                 }}
               >
-                Reset filters
+                Reset Filters
               </Button>
             </div>
           )}
