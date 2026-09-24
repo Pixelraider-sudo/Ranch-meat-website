@@ -18,21 +18,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { ProductCard } from "@/components/marketplace/product-card";
 
-import {
-  getFarmer,
-  getProduct,
-  getProducts,
-  queryKeys,
-} from "@/services/catalog.service";
+import { getFarmer, getProduct, getProducts, queryKeys } from "@/services/catalog.service";
 
 import { useCartStore } from "@/store/cart.store";
 import { formatCurrency } from "@/lib/format";
@@ -53,9 +43,7 @@ export const Route = createFileRoute("/marketplace/$slug")({
       { title: `${loaderData?.name ?? "Product"} | Ranch Meat Kenya` },
       {
         name: "description",
-        content:
-          loaderData?.description ??
-          "Traceable premium meat from verified Kenyan ranches.",
+        content: loaderData?.description ?? "Traceable premium meat from verified Kenyan ranches.",
       },
       {
         property: "og:title",
@@ -63,9 +51,7 @@ export const Route = createFileRoute("/marketplace/$slug")({
       },
       {
         property: "og:description",
-        content:
-          loaderData?.description ??
-          "Premium traceable meat from verified ranches.",
+        content: loaderData?.description ?? "Premium traceable meat from verified ranches.",
       },
     ],
   }),
@@ -120,10 +106,9 @@ function ProductPage() {
     enabled: Boolean(product?.categorySlug),
   });
 
-  const images = useMemo(
-    () => productGallery[product?.slug ?? ""] ?? productGallery.default,
-    [product?.slug],
-  );
+  const images = useMemo(() => {
+    return productGallery[product?.slug ?? ""] ?? productGallery["default"] ?? [];
+  }, [product?.slug]);
 
   if (isPending || !product) {
     return (
@@ -177,11 +162,7 @@ function ProductPage() {
                   : "border-transparent hover:border-border"
                   }`}
               >
-                <img
-                  src={image}
-                  alt=""
-                  className="aspect-square w-full object-cover"
-                />
+                <img src={image} alt="" className="aspect-square w-full object-cover" />
               </button>
             ))}
           </div>
@@ -195,9 +176,7 @@ function ProductPage() {
             ))}
           </div>
 
-          <h1 className="mt-4 font-display text-4xl font-extrabold">
-            {product.name}
-          </h1>
+          <h1 className="mt-4 font-display text-4xl font-extrabold">{product.name}</h1>
 
           <div className="mt-3 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
             <span className="flex items-center gap-1 text-foreground">
@@ -233,9 +212,7 @@ function ProductPage() {
                 )}
               </div>
 
-              <p className={`text-sm font-medium ${stockColor}`}>
-                {product.stockKg} kg available
-              </p>
+              <p className={`text-sm font-medium ${stockColor}`}>{product.stockKg} kg available</p>
             </div>
 
             <div className="mt-6 flex items-center gap-3">
@@ -250,11 +227,7 @@ function ProductPage() {
 
                 <span className="w-10 text-center">{quantity}</span>
 
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setQuantity((q) => q + 1)}
-                >
+                <Button variant="ghost" size="icon" onClick={() => setQuantity((q) => q + 1)}>
                   <Plus className="size-4" />
                 </Button>
               </div>
@@ -274,9 +247,7 @@ function ProductPage() {
             <Button
               className="mt-4 w-full bg-[#00A651] hover:bg-[#008F46]"
               size="lg"
-              onClick={() =>
-                toast.info("M-Pesa checkout arrives in the next phase.")
-              }
+              onClick={() => toast.info("M-Pesa checkout arrives in the next phase.")}
             >
               <Smartphone className="size-4" />
               Buy with M-Pesa
@@ -315,14 +286,10 @@ function ProductPage() {
                   <div className="flex items-center gap-2">
                     <h3 className="font-semibold">{farmer.farmName}</h3>
 
-                    {farmer.verified && (
-                      <BadgeCheck className="size-4 text-green-600" />
-                    )}
+                    {farmer.verified && <BadgeCheck className="size-4 text-green-600" />}
                   </div>
 
-                  <p className="text-sm text-muted-foreground">
-                    {farmer.name}
-                  </p>
+                  <p className="text-sm text-muted-foreground">{farmer.name}</p>
 
                   <p className="text-sm text-muted-foreground">
                     {farmer.location}, {farmer.county}
@@ -351,23 +318,17 @@ function ProductPage() {
               {product.nutrition.map((item) => (
                 <div key={item.label} className="surface-card p-5">
                   <p className="text-sm text-muted-foreground">{item.label}</p>
-                  <p className="mt-1 font-display text-2xl font-bold">
-                    {item.value}
-                  </p>
+                  <p className="mt-1 font-display text-2xl font-bold">{item.value}</p>
                 </div>
               ))}
             </div>
 
-            <p className="mt-4 text-xs text-muted-foreground">
-              Values are per 100g.
-            </p>
+            <p className="mt-4 text-xs text-muted-foreground">Values are per 100g.</p>
           </TabsContent>
 
           <TabsContent value="traceability" className="pt-6">
             <div className="surface-card rounded-3xl p-6">
-              <h3 className="font-display text-xl font-bold">
-                Farm-to-table journey
-              </h3>
+              <h3 className="font-display text-xl font-bold">Farm-to-table journey</h3>
 
               <div className="mt-6 space-y-5">
                 {[
@@ -386,8 +347,7 @@ function ProductPage() {
                       <p className="font-medium">{step}</p>
 
                       <p className="text-sm text-muted-foreground">
-                        Timestamped records become available through the QR code
-                        after purchase.
+                        Timestamped records become available through the QR code after purchase.
                       </p>
                     </div>
                   </div>
@@ -398,23 +358,17 @@ function ProductPage() {
 
           <TabsContent value="delivery" className="pt-6">
             <div className="surface-card rounded-3xl p-6">
-              <h3 className="font-display text-xl font-bold">
-                Delivery across Kenya
-              </h3>
+              <h3 className="font-display text-xl font-bold">Delivery across Kenya</h3>
 
               <div className="mt-5 grid gap-4 md:grid-cols-3">
                 <div className="rounded-xl bg-secondary/50 p-4">
                   <p className="font-semibold">Nairobi</p>
-                  <p className="text-sm text-muted-foreground">
-                    Same-day delivery available.
-                  </p>
+                  <p className="text-sm text-muted-foreground">Same-day delivery available.</p>
                 </div>
 
                 <div className="rounded-xl bg-secondary/50 p-4">
                   <p className="font-semibold">Kiambu</p>
-                  <p className="text-sm text-muted-foreground">
-                    Next-day chilled delivery.
-                  </p>
+                  <p className="text-sm text-muted-foreground">Next-day chilled delivery.</p>
                 </div>
 
                 <div className="rounded-xl bg-secondary/50 p-4">
@@ -439,11 +393,7 @@ function ProductPage() {
                 .filter((item) => item.id !== product.id)
                 .slice(0, 4)
                 .map((item, index) => (
-                  <ProductCard
-                    key={item.id}
-                    product={item}
-                    index={index}
-                  />
+                  <ProductCard key={item.id} product={item} index={index} />
                 ))}
             </div>
           </>

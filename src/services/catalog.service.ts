@@ -25,6 +25,9 @@ export const api = {
 
 const normalize = (value: string) => value.trim().toLowerCase();
 
+const isBestSeller = (product: Product) =>
+  product.badges.some((badge) => normalize(badge) === "best seller");
+
 export async function getCategories(): Promise<Category[]> {
   await wait();
   return [...categories];
@@ -49,7 +52,9 @@ export async function getProducts(query: ProductQuery = {}): Promise<Product[]> 
   const term = normalize(search);
 
   let list = products.filter((product) => {
-    const searchable = normalize(`${product.name} ${product.categoryName} ${product.origin}`);
+    const searchable = normalize(
+      [product.name, product.categoryName, product.origin, product.badges.join(" ")].join(" "),
+    );
 
     const matchesSearch = term.length === 0 || searchable.includes(term);
 
@@ -73,7 +78,11 @@ export async function getProducts(query: ProductQuery = {}): Promise<Product[]> 
         return b.rating - a.rating;
 
       default:
-        return Number(b.badges.includes("Best seller")) - Number(a.badges.includes("Best seller"));
+        if (isBestSeller(a) !== isBestSeller(b)) {
+          return Number(isBestSeller(b)) - Number(isBestSeller(a));
+        }
+
+        return b.rating - a.rating;
     }
   });
 
@@ -83,9 +92,15 @@ export async function getProducts(query: ProductQuery = {}): Promise<Product[]> 
 export async function getFeaturedProducts(): Promise<Product[]> {
   await wait();
 
-  const featured = products.filter((product) => product.badges.includes("Best seller"));
+  const featured = products.filter(isBestSeller);
 
-  return featured.length ? featured.slice(0, 4) : products.slice(0, 4);
+  if (featured.length >= 12) {
+    return featured.slice(0, 12);
+  }
+
+  const remaining = products.filter((product) => !featured.some((f) => f.id === product.id));
+
+  return [...featured, ...remaining].slice(0, 12);
 }
 
 export async function getProduct(slug: string): Promise<Product | undefined> {

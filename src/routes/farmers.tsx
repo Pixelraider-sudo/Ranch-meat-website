@@ -1,13 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import {
-  ArrowRight,
-  ClipboardCheck,
-  MapPin,
-  ShieldCheck,
-  Truck,
-  Users,
-} from "lucide-react";
+import { ArrowRight, ClipboardCheck, MapPin, ShieldCheck, Truck, Users } from "lucide-react";
 
 import { Reveal } from "@/components/animations/reveal";
 import { FarmerCard } from "@/components/farmers/farmer-card";
@@ -91,9 +84,8 @@ function FarmersPage() {
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg text-white/85">
-                Every Ranch Meat supplier is verified through documentation,
-                veterinary inspections and on-site reviews before selling on the
-                marketplace.
+                Every Ranch Meat supplier is verified through documentation, veterinary inspections
+                and on-site reviews before selling on the marketplace.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -114,15 +106,9 @@ function FarmersPage() {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-2">
-                <Badge className="bg-white/15 text-white backdrop-blur">
-                  Vet Verified
-                </Badge>
-                <Badge className="bg-white/15 text-white backdrop-blur">
-                  Annual Audits
-                </Badge>
-                <Badge className="bg-white/15 text-white backdrop-blur">
-                  Cold Chain Ready
-                </Badge>
+                <Badge className="bg-white/15 text-white backdrop-blur">Vet Verified</Badge>
+                <Badge className="bg-white/15 text-white backdrop-blur">Annual Audits</Badge>
+                <Badge className="bg-white/15 text-white backdrop-blur">Cold Chain Ready</Badge>
               </div>
             </div>
 
@@ -136,9 +122,7 @@ function FarmersPage() {
                     Verified Ranches
                   </span>
 
-                  <span className="text-2xl font-bold text-white">
-                    {verifiedCount}
-                  </span>
+                  <span className="text-2xl font-bold text-white">{verifiedCount}</span>
                 </div>
 
                 <div className="flex items-center justify-between rounded-2xl bg-white/10 p-4">
@@ -147,9 +131,7 @@ function FarmersPage() {
                     Counties
                   </span>
 
-                  <span className="text-2xl font-bold text-white">
-                    {counties}
-                  </span>
+                  <span className="text-2xl font-bold text-white">{counties}</span>
                 </div>
 
                 <div className="flex items-center justify-between rounded-2xl bg-white/10 p-4">
@@ -158,9 +140,7 @@ function FarmersPage() {
                     Partner Network
                   </span>
 
-                  <span className="text-2xl font-bold text-white">
-                    Growing
-                  </span>
+                  <span className="text-2xl font-bold text-white">Growing</span>
                 </div>
               </div>
             </div>
@@ -190,8 +170,8 @@ function FarmersPage() {
               <h3 className="mt-4 font-semibold">Document Review</h3>
 
               <p className="mt-2 text-sm text-muted-foreground">
-                Ownership records, livestock documentation and compliance checks
-                are reviewed before onboarding.
+                Ownership records, livestock documentation and compliance checks are reviewed before
+                onboarding.
               </p>
             </div>
           </Reveal>
@@ -204,7 +184,7 @@ function FarmersPage() {
 
               <p className="mt-2 text-sm text-muted-foreground">
                 Veterinary verification ensures livestock health standards are
-                met before marketplace approval.
+                marketplace approval.
               </p>
             </div>
           </Reveal>
@@ -287,7 +267,7 @@ function FarmersPage() {
                 <FarmerCard
                   farmer={{
                     ...farmer,
-                    image: farmerImages[farmer.id] ?? farmer.image,
+                    avatar: farmerImages[farmer.id] ?? farmer.avatar,
                   }}
                 />
               </Reveal>
