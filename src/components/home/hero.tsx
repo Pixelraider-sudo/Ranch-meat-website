@@ -1,9 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight, BadgeCheck, Snowflake, Truck } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Clock3,
+  ShieldCheck,
+  Snowflake,
+  Truck,
+} from "lucide-react";
 
 import heroImage from "@/assets/hero-ranch.jpg";
-
 import { Counter } from "@/components/animations/counter";
 import { Button } from "@/components/ui/button";
 
@@ -14,9 +20,9 @@ const trustBadges = [
 ];
 
 const heroStats = [
-  { value: 100, suffix: "%", label: "Traceable sourcing" },
-  { value: 24, suffix: "/7", label: "Order support" },
-  { value: 48, suffix: "h", label: "Fresh delivery window" },
+  { value: 126, suffix: "+", label: "Verified ranches" },
+  { value: 18500, suffix: "+", label: "Orders delivered" },
+  { value: 98.7, suffix: "%", label: "On-time delivery" },
 ];
 
 export function Hero() {
@@ -45,7 +51,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="mx-auto max-w-[88rem] px-4 pt-24 pb-24 sm:px-6 sm:pt-32 sm:pb-32 lg:px-8">
+      <div className="mx-auto max-w-[88rem] px-4 pb-24 pt-24 sm:px-6 sm:pb-32 sm:pt-32 lg:px-8">
         <div className="grid items-end gap-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 28 }}
@@ -56,21 +62,16 @@ export function Hero() {
             }}
             className="max-w-2xl text-primary-foreground"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1.5 text-xs font-medium backdrop-blur">
-              <span className="size-1.5 rounded-full bg-success" />
-              Launching across Nairobi & Kiambu
-            </span>
-
-            <h1 className="text-hero mt-6">
+            <h1 className="text-hero">
               Premium Kenyan meat,
               <br />
-              fully traceable from ranch to table.
+              directly from verified ranches.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-primary-foreground/85">
-              Ranch Meat connects verified Kenyan ranches directly with households, restaurants and
-              wholesale buyers through transparent sourcing, cold-chain delivery and secure M-Pesa
-              checkout.
+              Order traceable beef, lamb, goat and free-range chicken sourced
+              from trusted Kenyan ranches, delivered through a monitored
+              cold-chain with secure M-Pesa payments.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -80,7 +81,7 @@ export function Hero() {
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 <Link to="/marketplace">
-                  Browse Marketplace
+                  Shop Fresh Meat
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
@@ -91,7 +92,7 @@ export function Hero() {
                 variant="outline"
                 className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
               >
-                <Link to="/transparency">How Traceability Works</Link>
+                <Link to="/transparency">View Traceability</Link>
               </Button>
             </div>
 
@@ -118,25 +119,51 @@ export function Hero() {
             }}
             className="glass-panel rounded-3xl p-6 sm:p-8"
           >
-            <p className="text-eyebrow text-muted-foreground">Why Ranch Meat</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-eyebrow text-muted-foreground">
+                  Marketplace trust
+                </p>
+                <h2 className="mt-1 text-xl font-bold">Verified performance</h2>
+              </div>
 
-            <dl className="mt-6 space-y-6">
+              <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                <ShieldCheck className="size-5" />
+              </span>
+            </div>
+
+            <dl className="mt-8 space-y-6">
               {heroStats.map((stat) => (
-                <div key={stat.label} className="border-b pb-5 last:border-b-0 last:pb-0">
+                <div
+                  key={stat.label}
+                  className="border-b pb-5 last:border-b-0 last:pb-0"
+                >
                   <dd className="font-display text-4xl font-extrabold tabular-nums">
                     <Counter value={stat.value} suffix={stat.suffix} />
                   </dd>
 
-                  <dt className="mt-1 text-sm text-muted-foreground">{stat.label}</dt>
+                  <dt className="mt-1 text-sm text-muted-foreground">
+                    {stat.label}
+                  </dt>
                 </div>
               ))}
             </dl>
 
-            <div className="mt-8 rounded-2xl bg-muted/60 p-4">
-              <p className="text-sm font-medium text-foreground">Coming soon</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Real-time order tracking, verified farmer profiles and secure M-Pesa payments.
-              </p>
+            <div className="mt-8 rounded-2xl border border-primary/15 bg-background/30 p-4 backdrop-blur">
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <Clock3 className="size-5" />
+                </span>
+
+                <div>
+                  <p className="text-sm font-semibold">
+                    Next-day chilled delivery
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Nairobi, Kiambu and nearby counties.
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

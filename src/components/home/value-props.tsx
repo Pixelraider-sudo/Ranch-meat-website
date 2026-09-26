@@ -1,53 +1,111 @@
-import { Leaf, LineChart, ShieldCheck, Thermometer } from "lucide-react";
+import {
+  ShieldCheck,
+  ThermometerSnowflake,
+  Wallet,
+  Truck,
+  ChevronRight,
+} from "lucide-react";
+
 import { Reveal } from "@/components/animations/reveal";
 import { Section, SectionHeader } from "@/components/common/section";
 
 const values = [
   {
     icon: ShieldCheck,
-    title: "Audited supply",
-    body: "On-site farm inspections, veterinary sign-off and annual re-audits keep the verified badge honest.",
+    title: "Verified Kenyan ranches",
+    body: "Every partner ranch goes through veterinary inspection, document verification and ongoing compliance checks before products go live.",
+    highlight: "100% verified suppliers",
   },
   {
-    icon: Thermometer,
-    title: "Sensor-backed cold chain",
-    body: "Temperature telemetry travels with the crate — every order carries its own log.",
+    icon: ThermometerSnowflake,
+    title: "Cold-chain protected",
+    body: "Orders travel in temperature-controlled vehicles with live monitoring from dispatch to your doorstep.",
+    highlight: "0–2°C monitored delivery",
   },
   {
-    icon: LineChart,
-    title: "Operations-grade tooling",
-    body: "Standing orders, tiered wholesale pricing, invoicing and forecasting for kitchens at scale.",
+    icon: Wallet,
+    title: "Built for M-Pesa",
+    body: "Fast checkout for households today, with secure M-Pesa payments becoming the default payment experience.",
+    highlight: "Kenya-first payments",
   },
   {
-    icon: Leaf,
-    title: "Regenerative by default",
-    body: "Rotational grazing, short-haul transit and carbon-neutral last mile on every delivery.",
+    icon: Truck,
+    title: "Reliable delivery",
+    body: "Designed for Nairobi, Kiambu and expanding counties with scheduled delivery windows for homes and businesses.",
+    highlight: "Home & wholesale delivery",
   },
 ];
 
 export function ValueProps() {
   return (
-    <Section>
+    <Section className="bg-secondary/20">
       <SectionHeader
-        eyebrow="Why Ranch Meat"
-        title="Built like infrastructure, not a storefront"
-        description="The marketplace is the surface. Underneath sits verification, logistics and data that professional buyers can rely on."
+        eyebrow="Why choose Ranch Meat"
+        title="Everything built around trust, freshness and speed"
+        description="Buying meat online should feel as trustworthy as buying directly from a ranch. Every order combines verified sourcing, cold-chain delivery and transparent pricing."
         align="center"
       />
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {values.map((value, index) => (
-          <Reveal key={value.title} delay={index * 0.06} className="h-full">
-            <div className="surface-card h-full p-6">
-              <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
-                <value.icon className="size-5" aria-hidden="true" />
+          <Reveal key={value.title} delay={index * 0.08} className="h-full">
+            <article className="group surface-card relative flex h-full flex-col overflow-hidden rounded-3xl border border-border/70 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary/70 to-accent scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
+
+              <span className="grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
+                <value.icon className="size-7" aria-hidden="true" />
               </span>
-              <h3 className="mt-5 text-base font-semibold">{value.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                {value.highlight}
+              </p>
+
+              <h3 className="mt-2 text-xl font-bold leading-tight">
+                {value.title}
+              </h3>
+
+              <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground">
                 {value.body}
               </p>
-            </div>
+
+              <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-primary opacity-70 transition-all duration-300 group-hover:opacity-100">
+                Learn more
+                <ChevronRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </div>
+            </article>
           </Reveal>
         ))}
+      </div>
+
+      <div className="mt-16 rounded-3xl border bg-card px-6 py-8 shadow-sm sm:px-10">
+        <div className="grid gap-8 text-center sm:grid-cols-3">
+          <div>
+            <p className="font-display text-4xl font-extrabold text-primary">
+              100%
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Verified ranch partners
+            </p>
+          </div>
+
+          <div>
+            <p className="font-display text-4xl font-extrabold text-primary">
+              0–2°C
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Cold-chain monitored delivery
+            </p>
+          </div>
+
+          <div>
+            <p className="font-display text-4xl font-extrabold text-primary">
+              24/7
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Customer support
+            </p>
+          </div>
+        </div>
       </div>
     </Section>
   );
