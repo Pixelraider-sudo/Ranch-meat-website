@@ -190,3 +190,36 @@ export interface ProductQuery {
   sort?: ProductSort;
   maxPrice?: number;
 }
+
+/* -------------------------------------------------------------------------- */
+/* Authentication (MVP - Local Storage)                                       */
+/* -------------------------------------------------------------------------- */
+
+export interface AuthUser {
+  id: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  createdAt: string;
+}
+
+export interface AuthRecord extends AuthUser {
+  passwordHash: string;
+}
+
+export interface AuthSession {
+  user: AuthUser;
+  loggedInAt: string;
+}
+
+export interface RegisterPayload {
+  name: string;
+  email: string;
+  password: string;
+  role: UserRole;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
